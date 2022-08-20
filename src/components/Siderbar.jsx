@@ -1,90 +1,91 @@
-import * as React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
+import Text from "@mui/material/ListItemText";
 import CssBaseline from "@mui/material/CssBaseline";
 import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
-import IconButton from "@mui/material/IconButton";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MailIcon from "@mui/icons-material/Mail";
 import MenuIcon from "@mui/icons-material/Menu";
+import { IconButton } from "@mui/material";
+import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
+import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
 import Toolbar from "@mui/material/Toolbar";
+import $ from "jquery";
 import "../css/Sidebar.scss";
 import sidebarData from "./Sidebardata";
 
-const drawerWidth = 280;
+const drawerWidth = 300;
 
 export default function ResponsiveDrawer(props) {
   const { window } = props;
+  const router = useNavigate();
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [subFlag, setsubFlag] = useState(true);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
+  };
+
+  const handleMainMenu = (e, no) => {
+    e.preventDefault();
+    switch (no) {
+      case 1: {
+        $("#subMenu_dashboard").slideToggle();
+        $("#icon_dashboard").append(<ArrowDropDown />);
+      }
+      case 2: {
+      }
+      case 3: {
+      }
+      case 4: {
+      }
+      case 5: {
+      }
+      case 6: {
+      }
+    }
   };
 
   const drawer = (
     <div className="sidebar-back">
       <div className="opacity-back">
         <Toolbar className="title-tool">RR PAY CONTROL</Toolbar>
-        <Divider />
-        <List>
-          {sidebarData.map((item, index) => (
-            <ul sx={{ padding: "0px 0px" }}>
-              {list.map((item, i) => (
-                <li
-                  key={i}
-                  onClick={(e) =>
-                    handleMainMenu(e, item.sublist.length, item.router)
-                  }
-                  sx={styles.mainlist.type}
-                >
-                  <Flex
-                    id={"sidebar_" + item.id}
-                    sx={
-                      item.sublist.length == 0
-                        ? styles.mainlist.aloneMenu
-                        : styles.mainlist.multiMenu
-                    }
+        <Divider sx={{ borderColor: "grey !important" }} />
+        <ul style={{ padding: "0px 0px" }}>
+          {sidebarData.map((item, i) => (
+            <li
+              key={i}
+              onClick={(e) => handleMainMenu(e, item.no)}
+              style={styles.mainlist.type}
+            >
+              <Box id={"sidebar_" + item.id} sx={styles.mainlist.aloneMenu}>
+                <Text sx={styles.mainlist.menuStyle}> {item.text} </Text>
+                {item.sublist.length > 0 ? (
+                  <Text sx={styles.mainlist.icon} id={"icon_" + item.id}></Text>
+                ) : (
+                  ""
+                )}
+              </Box>
+              <ul
+                style={styles.mainlist.subListActive}
+                id={"subMenu_" + item.id}
+              >
+                {item.sublist.map((item, i) => (
+                  <li
+                    id={"sidebar_" + item.text.toLowerCase()}
+                    key={i}
+                    onClick={() => {
+                      router(item.router);
+                    }}
+                    style={styles.mainlist.sublistType}
                   >
-                    <Text sx={styles.mainlist.icon}>{item.icon}</Text>
-                    <Text sx={styles.mainlist.menuStyle}> {item.text} </Text>
-                    {item.sublist.length > 0 ? (
-                      <Text sx={styles.mainlist.icon}>
-                        {subFlag ? item.subIconUp : item.subIconDown}
-                      </Text>
-                    ) : (
-                      ""
-                    )}
-                  </Flex>
-                  <ul
-                    sx={
-                      subFlag
-                        ? styles.mainlist.subListActive
-                        : styles.mainlist.subListNonActive
-                    }
-                  >
-                    {item.sublist.map((item, i) => (
-                      <li
-                        id={"sidebar_" + item.text.toLowerCase()}
-                        key={i}
-                        onClick={() => {
-                          router.push(item.router);
-                        }}
-                        sx={styles.mainlist.sublistType}
-                      >
-                        {item.text}
-                      </li>
-                    ))}
-                  </ul>
-                </li>
-              ))}
-            </ul>
+                    <Box sx={styles.mainlist.subMenu}>{item.text}</Box>
+                  </li>
+                ))}
+              </ul>
+            </li>
           ))}
-        </List>
+        </ul>
       </div>
     </div>
   );
@@ -107,7 +108,7 @@ export default function ResponsiveDrawer(props) {
           top: "20px",
           right: "5px",
           zIndex: "100",
-          color: "white",
+          color: "black",
         }}
       >
         <MenuIcon />
@@ -157,3 +158,63 @@ export default function ResponsiveDrawer(props) {
     </Box>
   );
 }
+
+const styles = {
+  mainlist: {
+    type: {
+      listStyleType: "none",
+      fontWeight: 600,
+      fontStyle: "normal",
+      fontSize: "15px",
+      lineHeight: "40px",
+      borderRadius: "8px",
+      cursor: "pointer",
+    },
+    sublistType: {
+      paddingLeft: "10px",
+      listStyleType: "none",
+      borderRadius: "8px",
+      "&:hover": {
+        backgroundColor: "#5B6EF5",
+        borderRadius: "8px",
+        color: "white",
+        fontFamily: "",
+        fontWeight: "400",
+      },
+    },
+    aloneMenu: {
+      px: "8px",
+      pt: "6px",
+      borderRadius: "4px",
+      display: "flex",
+      "&:hover": {
+        backgroundColor: "rgba(200, 200, 200, 0.2)",
+        borderRadius: "4px",
+        color: "white",
+        fontWeight: "400",
+      },
+    },
+    subMenu: {
+      py: "13px",
+      pl: "40px",
+      borderRadius: "4px",
+      lineHeight: "1.5em",
+      fontWeight: "400",
+      "&:hover": {
+        backgroundColor: "rgba(200, 200, 200, 0.2)",
+        borderRadius: "4px",
+        color: "white",
+      },
+    },
+    menuStyle: {
+      width: "100%",
+      pl: "10px",
+    },
+    icon: {
+      pt: "2px",
+    },
+    subListActive: {
+      paddingLeft: "0px",
+    },
+  },
+};

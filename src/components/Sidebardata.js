@@ -3,6 +3,7 @@ export default [
     text: "Dashboard",
     router: "",
     id: "dashboard",
+    no: 1,
     sublist: [
       {
         text: "Account Information",
@@ -19,6 +20,7 @@ export default [
   {
     text: "Management accounting",
     router: "",
+    no: 2,
     id: "management_accouting",
     sublist: [
       {
@@ -31,6 +33,7 @@ export default [
   {
     text: "Report management",
     router: "",
+    no: 3,
     id: "report_management",
     sublist: [
       {
@@ -58,11 +61,14 @@ export default [
         router: "/quota_report",
         id: "quota_report",
       },
-      {
-        text: "Chart management",
-        router: "/chart_management",
-        id: "chart_management",
-      },
+    ],
+  },
+  {
+    text: "Chart management",
+    router: "",
+    no: 4,
+    id: "chart_management",
+    sublist: [
       {
         text: "Summary chart",
         router: "/summary_chart",
@@ -73,6 +79,7 @@ export default [
   {
     text: "System Management",
     router: "",
+    no: 5,
     id: "system_management",
     sublist: [
       {
@@ -85,6 +92,7 @@ export default [
   {
     text: "Record",
     router: "",
+    no: 6,
     id: "record",
     sublist: [
       {
