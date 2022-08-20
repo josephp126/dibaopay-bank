@@ -1,0 +1,19 @@
+.sidebar-back {
+  background: url("../../public/img/login.jpg");
+  background-size: cover;
+  min-height: calc(100vh);
+  color: white;
+}
+
+.opacity-back {
+  background-color: #000000a8;
+  min-height: calc(100vh);
+  padding: 0px 15px;
+}
+
+.title-tool {
+  padding-left: 0px !important;
+  justify-content: center !important;
+  padding-top: 5px !important;
+  font-size: 22px !important;
+}
