@@ -245,22 +245,23 @@ export default function ResponsiveDrawer(props) {
                   ""
                 )}
               </Box>
-              <Box id={"subMenu_" + item.id} sx={styles.mainlist.subListActive}>
-                <ul>
-                  {item.sublist.map((item, i) => (
-                    <li
-                      id={"sidebar_" + item.text.toLowerCase()}
-                      key={i}
-                      onClick={() => {
-                        router(item.router);
-                      }}
-                      style={styles.mainlist.sublistType}
-                    >
-                      <Box sx={styles.mainlist.subMenu}>{item.text}</Box>
-                    </li>
-                  ))}
-                </ul>
-              </Box>
+              <ul
+                id={"subMenu_" + item.id}
+                style={styles.mainlist.subListActive}
+              >
+                {item.sublist.map((item, i) => (
+                  <li
+                    id={"sidebar_sublist_" + item.id}
+                    key={i}
+                    onClick={() => {
+                      router(item.router);
+                    }}
+                    style={styles.mainlist.sublistType}
+                  >
+                    <Box sx={styles.mainlist.subMenu}>{item.text}</Box>
+                  </li>
+                ))}
+              </ul>
             </li>
           ))}
         </ul>

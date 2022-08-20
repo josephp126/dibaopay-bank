@@ -1,4 +1,5 @@
 import Sidebar from "../components/Siderbar";
+import Navbar from "../components/Navbar";
 import { Outlet } from "react-router-dom";
 import { Box } from "@mui/material";
 const PageLayout = () => {
@@ -6,6 +7,7 @@ const PageLayout = () => {
     <Box sx={{ display: "flex" }}>
       <Sidebar />
       <Box sx={{ padding: "15px 25px" }}>
+        <Navbar />
         <Outlet />
       </Box>
     </Box>
