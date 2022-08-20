@@ -20,7 +20,12 @@ export default function ResponsiveDrawer(props) {
   const { window } = props;
   const router = useNavigate();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [subFlag, setsubFlag] = useState(true);
+  const [subDashboardFlag, setsubDashboardFlag] = useState(true);
+  const [subAccountFlag, setsubAccountFlag] = useState(true);
+  const [subReportFlag, setsubReportFlag] = useState(true);
+  const [subChartFlag, setsubChartFlag] = useState(true);
+  const [subSystemFlag, setsubSystemFlag] = useState(true);
+  const [subRecordFlag, setsubRecordFlag] = useState(true);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
@@ -30,18 +35,190 @@ export default function ResponsiveDrawer(props) {
     e.preventDefault();
     switch (no) {
       case 1: {
+        $("#icon_dashboard").html("");
         $("#subMenu_dashboard").slideToggle();
-        $("#icon_dashboard").append(<ArrowDropDown />);
+        if (subDashboardFlag == true) {
+          setsubDashboardFlag(false);
+          $("#icon_dashboard").append(`
+            <svg
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              focusable="false"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              data-testid="ArrowDropUpIcon"
+            >
+              <path d="m7 14 5-5 5 5z"></path>
+            </svg>`);
+        } else {
+          setsubDashboardFlag(true);
+          $("#icon_dashboard").append(`
+            <svg
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              focusable="false"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              data-testid="ArrowDropDownIcon"
+            >
+            <path d="m7 10 5 5 5-5z"></path>
+          </svg>`);
+        }
+        $("#icon_dashboard").css("margin", "0px");
+        break;
       }
       case 2: {
+        $("#icon_management_accounting").html("");
+        $("#subMenu_management_accounting").slideToggle();
+        if (subAccountFlag == true) {
+          setsubAccountFlag(false);
+          $("#icon_management_accounting").append(`
+            <svg
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            focusable="false"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            data-testid="ArrowDropUpIcon"
+          >
+            <path d="m7 14 5-5 5 5z"></path>
+          </svg>`);
+        } else {
+          setsubAccountFlag(true);
+          $("#icon_management_accounting").append(`
+            <svg
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              focusable="false"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              data-testid="ArrowDropDownIcon"
+            >
+            <path d="m7 10 5 5 5-5z"></path>
+          </svg>`);
+        }
+        $("#icon_management_accounting").css("margin", "0px");
+        break;
       }
       case 3: {
+        $("#icon_report_management").html("");
+        $("#subMenu_report_management").slideToggle();
+        if (subReportFlag == true) {
+          setsubReportFlag(false);
+          $("#icon_report_management").append(`
+            <svg
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            focusable="false"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            data-testid="ArrowDropUpIcon"
+          >
+            <path d="m7 14 5-5 5 5z"></path>
+          </svg>`);
+        } else {
+          setsubReportFlag(true);
+          $("#icon_report_management").append(`
+            <svg
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              focusable="false"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              data-testid="ArrowDropDownIcon"
+            >
+            <path d="m7 10 5 5 5-5z"></path>
+          </svg>`);
+        }
+        $("#icon_report_management").css("margin", "0px");
+        break;
       }
       case 4: {
+        $("#icon_chart_management").html("");
+        $("#subMenu_chart_management").slideToggle();
+        if (subChartFlag == true) {
+          setsubChartFlag(false);
+          $("#icon_chart_management").append(`
+            <svg
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            focusable="false"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            data-testid="ArrowDropUpIcon"
+          >
+            <path d="m7 14 5-5 5 5z"></path>
+          </svg>`);
+        } else {
+          setsubChartFlag(true);
+          $("#icon_chart_management").append(`
+            <svg
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              focusable="false"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              data-testid="ArrowDropDownIcon"
+            >
+            <path d="m7 10 5 5 5-5z"></path>
+          </svg>`);
+        }
+        $("#icon_chart_management").css("margin", "0px");
+        break;
       }
       case 5: {
+        $("#icon_system_management").html("");
+        $("#subMenu_system_management").slideToggle();
+        if (subSystemFlag == true) {
+          setsubSystemFlag(false);
+          $("#icon_system_management").append(`
+            <svg
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            focusable="false"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            data-testid="ArrowDropUpIcon"
+          >
+            <path d="m7 14 5-5 5 5z"></path>
+          </svg>`);
+        } else {
+          setsubSystemFlag(true);
+          $("#icon_system_management").append(`
+            <svg
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              focusable="false"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              data-testid="ArrowDropDownIcon"
+            >
+            <path d="m7 10 5 5 5-5z"></path>
+          </svg>`);
+        }
+        $("#icon_system_management").css("margin", "0px");
+        break;
       }
       case 6: {
+        $("#icon_record").html("");
+        $("#subMenu_record").slideToggle();
+        if (subRecordFlag == true) {
+          setsubRecordFlag(false);
+          $("#icon_record").append(`
+            <svg
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            focusable="false"
+            aria-hidden="true"
+            viewBox="0 0 24 24"
+            data-testid="ArrowDropUpIcon"
+          >
+            <path d="m7 14 5-5 5 5z"></path>
+          </svg>`);
+        } else {
+          setsubRecordFlag(true);
+          $("#icon_record").append(`
+            <svg
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              focusable="false"
+              aria-hidden="true"
+              viewBox="0 0 24 24"
+              data-testid="ArrowDropDownIcon"
+            >
+            <path d="m7 10 5 5 5-5z"></path>
+          </svg>`);
+        }
+        $("#icon_record").css("margin", "0px");
+        break;
       }
     }
   };
@@ -61,28 +238,29 @@ export default function ResponsiveDrawer(props) {
               <Box id={"sidebar_" + item.id} sx={styles.mainlist.aloneMenu}>
                 <Text sx={styles.mainlist.menuStyle}> {item.text} </Text>
                 {item.sublist.length > 0 ? (
-                  <Text sx={styles.mainlist.icon} id={"icon_" + item.id}></Text>
+                  <Text sx={styles.mainlist.icon} id={"icon_" + item.id}>
+                    <ArrowDropDown />
+                  </Text>
                 ) : (
                   ""
                 )}
               </Box>
-              <ul
-                style={styles.mainlist.subListActive}
-                id={"subMenu_" + item.id}
-              >
-                {item.sublist.map((item, i) => (
-                  <li
-                    id={"sidebar_" + item.text.toLowerCase()}
-                    key={i}
-                    onClick={() => {
-                      router(item.router);
-                    }}
-                    style={styles.mainlist.sublistType}
-                  >
-                    <Box sx={styles.mainlist.subMenu}>{item.text}</Box>
-                  </li>
-                ))}
-              </ul>
+              <Box id={"subMenu_" + item.id} sx={styles.mainlist.subListActive}>
+                <ul>
+                  {item.sublist.map((item, i) => (
+                    <li
+                      id={"sidebar_" + item.text.toLowerCase()}
+                      key={i}
+                      onClick={() => {
+                        router(item.router);
+                      }}
+                      style={styles.mainlist.sublistType}
+                    >
+                      <Box sx={styles.mainlist.subMenu}>{item.text}</Box>
+                    </li>
+                  ))}
+                </ul>
+              </Box>
             </li>
           ))}
         </ul>
@@ -215,6 +393,7 @@ const styles = {
     },
     subListActive: {
       paddingLeft: "0px",
+      display: "none",
     },
   },
 };

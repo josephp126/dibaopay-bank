@@ -21,7 +21,7 @@ export default [
     text: "Management accounting",
     router: "",
     no: 2,
-    id: "management_accouting",
+    id: "management_accounting",
     sublist: [
       {
         text: "Withdrawal",
