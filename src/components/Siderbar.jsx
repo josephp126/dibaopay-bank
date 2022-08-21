@@ -258,6 +258,7 @@ export default function ResponsiveDrawer(props) {
                     style={styles.mainlist.sublistType}
                   >
                     <Box
+                      className="sidebar-sublist"
                       id={"sidebar_sublist_" + item.id}
                       sx={styles.mainlist.subMenu}
                     >
@@ -384,9 +385,10 @@ const styles = {
       lineHeight: "1.5em",
       fontWeight: "400",
       "&:hover": {
-        backgroundColor: "rgba(200, 200, 200, 0.2)",
+        backgroundColor: "rgba(200, 200, 200, 0.2) !important",
         borderRadius: "4px",
         color: "white",
+        fontWeight: "400",
       },
     },
     menuStyle: {

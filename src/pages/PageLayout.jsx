@@ -38,7 +38,7 @@ const PageLayout = () => {
     >
       <Box sx={{ display: "flex" }}>
         <Sidebar />
-        <Box sx={{ padding: "15px 25px" }}>
+        <Box sx={{ padding: "15px 25px", width: "100%" }}>
           <Navbar />
           <Outlet />
         </Box>

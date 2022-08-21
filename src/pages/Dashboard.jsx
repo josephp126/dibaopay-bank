@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import DashboardCard from "../components/DashboardCard";
-import { Grid, Card, Typography } from "@mui/material";
+import { Grid, Card, Typography, Box } from "@mui/material";
 import DashboardLineChart from "../components/Dashboardlinechart";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
 import $ from "jquery";
@@ -55,6 +55,10 @@ const dashboardcarddata = [
 
 const Dashboard = () => {
   useEffect(() => {
+    $(".sidebar-sublist").css({
+      "background-color": "transparent",
+      "box-shadow": "none",
+    });
     $("#sidebar_sublist_dashboard").css({
       "background-color": "#e91e63",
       "box-shadow":
@@ -86,16 +90,16 @@ const Dashboard = () => {
         >
           Statistic chart
         </Typography>
-        <InsertChartIcon
-          sx={{
-            position: "absolute",
-            marginTop: "-116px",
-            padding: "20px",
-            background: "#26c6da",
-            color: "white",
-            borderRadius: "3px",
-          }}
-        />
+        <Box sx={styles.main}>
+          <InsertChartIcon
+            sx={{
+              fontSize: "40px",
+              color: "white",
+              borderRadius: "3px",
+            }}
+          />
+        </Box>
+
         <DashboardLineChart />
       </Card>
     </div>
@@ -103,3 +107,13 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+const styles = {
+  main: {
+    background: "#26c6da",
+    position: "absolute",
+    marginTop: "-116px",
+    padding: "12px 13px 7px 12px",
+    borderRadius: "4px",
+  },
+};
