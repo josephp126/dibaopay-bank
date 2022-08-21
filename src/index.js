@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import SignIn from "./pages/Signin";
 import Dashboard from "./pages/Dashboard";
 import PageLayout from "./pages/PageLayout";
-import Profile from "./pages/Profile";
+import Withdrawal from "./pages/Withdrawal";
+import AccountInfo from "./pages/AccountInfo";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
@@ -17,7 +18,8 @@ root.render(
         <Route exact path="/login" element={<SignIn />} />
         <Route element={<PageLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/accountInfo" element={<Profile />} />
+          <Route path="/accountInfo" element={<AccountInfo />} />
+          <Route path="/withdrawal" element={<Withdrawal />} />
         </Route>
       </Routes>
     </BrowserRouter>
