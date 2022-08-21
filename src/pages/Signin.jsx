@@ -18,8 +18,7 @@ import {
   Backdrop,
   MenuItem,
 } from "@mui/material";
-import { history } from "../_helpers/history";
-import { authActions } from "../_store/auth.slice";
+import axios from "axios";
 
 import "../css/Signin.scss";
 
@@ -43,12 +42,16 @@ const SignIn = () => {
   const [login, setLogin] = useState(false);
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
-  useEffect(() => {
-    if (login == true) {
-      history.navigate("/dashboard");
-    }
-  });
-  const handleOpen = () => {
+
+  const handleOpen = async () => {
+    const user = await axios.post("http://localhost:5000/users/login", {
+      data: { name: account, password: password },
+    });
+    console.log(user);
+    localStorage.setItem("dibao_login", user.data.token);
+    localStorage.setItem("dibao_username", user.data.name);
+    localStorage.setItem("dibao_userId", user.data.id);
+
     if (account === "test" && password === "test") {
       navigate("/dashboard");
       setLogin(true);
@@ -63,6 +66,7 @@ const SignIn = () => {
     }
     setOpen(true);
   };
+
   const handleClose = () => setOpen(false);
   const navigate = useNavigate();
 
@@ -128,8 +132,6 @@ const SignIn = () => {
           >
             Login
           </Button>
-          {console.log("password" + password)}
-          {console.log("account" + account)}
 
           <Modal
             aria-labelledby="transition-modal-title"

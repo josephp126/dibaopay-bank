@@ -251,14 +251,18 @@ export default function ResponsiveDrawer(props) {
               >
                 {item.sublist.map((item, i) => (
                   <li
-                    id={"sidebar_sublist_" + item.id}
                     key={i}
                     onClick={() => {
                       router(item.router);
                     }}
                     style={styles.mainlist.sublistType}
                   >
-                    <Box sx={styles.mainlist.subMenu}>{item.text}</Box>
+                    <Box
+                      id={"sidebar_sublist_" + item.id}
+                      sx={styles.mainlist.subMenu}
+                    >
+                      {item.text}
+                    </Box>
                   </li>
                 ))}
               </ul>
