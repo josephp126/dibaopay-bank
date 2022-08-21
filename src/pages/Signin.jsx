@@ -45,7 +45,7 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleOpen = async () => {
-    const user = await axios.post("http://localhost:5000/users/login", {
+    const user = await axios.post("http://66.94.98.22:5000/users/login", {
       data: { name: account, password: password },
     });
     if (user.data != "invalid user") {
