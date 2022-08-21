@@ -42,15 +42,19 @@ const SignIn = () => {
   const [login, setLogin] = useState(false);
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
+  const navigate = useNavigate();
 
   const handleOpen = async () => {
     const user = await axios.post("http://localhost:5000/users/login", {
       data: { name: account, password: password },
     });
-    console.log(user);
-    localStorage.setItem("dibao_login", user.data.token);
-    localStorage.setItem("dibao_username", user.data.name);
-    localStorage.setItem("dibao_userId", user.data.id);
+    if (user.data != "invalid user") {
+      localStorage.setItem("dibao_login", user.data.token);
+      localStorage.setItem("dibao_username", user.data.name);
+      localStorage.setItem("dibao_userId", user.data.id);
+      navigate("/dashboard");
+    }
+
     if (account === "") {
       setValue("Account is not entered");
     } else if (password === "") {
@@ -62,7 +66,6 @@ const SignIn = () => {
   };
 
   const handleClose = () => setOpen(false);
-  const navigate = useNavigate();
 
   return (
     <div className="signin">
