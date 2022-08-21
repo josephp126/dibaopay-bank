@@ -51,7 +51,14 @@ const Withdrawal = () => {
     { value: "lastmonth", title: "Last Month" },
   ];
   const [value, setValue] = useState(new Date());
-
+  const [amount, setAmount] = useState("");
+  const [password, setPassword] = useState("");
+  const handleAmount = (event) => {
+    setAmount(event.target.value);
+  }
+  const handlePassword = (event) => {
+    setPassword(event.target.value);
+  }
   const handleChange = (newValue) => {
     setValue(newValue);
   };
@@ -118,7 +125,9 @@ const Withdrawal = () => {
                     label="existing amount"
                     id="exist"
                     type="number"
+                    value={amount}
                     sx={{ width: "100%" }}
+                    onChange={handleAmount}
                   />
                 </Grid>
                 <Grid item lg={4} md={12}>
@@ -127,6 +136,8 @@ const Withdrawal = () => {
                     label="withdraw password"
                     id="password"
                     type="password"
+                    value={password}
+                    onChange={handlePassword}
                     sx={{ width: "100%" }}
                   />
                 </Grid>
