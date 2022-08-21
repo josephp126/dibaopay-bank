@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   Card,
@@ -12,11 +12,12 @@ import {
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
-import PriorityHighIcon from '@mui/icons-material/PriorityHigh';
-import CampaignIcon from '@mui/icons-material/Campaign';
+import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
+import CampaignIcon from "@mui/icons-material/Campaign";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import $ from "jquery";
 
 const styles = {
   main: {
@@ -28,19 +29,15 @@ const styles = {
   },
 };
 const notificationstyle = {
-    main: {
-      background: "white",
-      position: "absolute",
-      marginTop: "-35px",
-      padding: "5px 6px 0 5px",
-      borderRadius: "50%",
-    },
-  };
+  main: {
+    background: "white",
+    position: "absolute",
+    marginTop: "-35px",
+    padding: "5px 6px 0 5px",
+    borderRadius: "50%",
+  },
+};
 const Withdrawal = () => {
-  //   const [card, setCard] = useState("");
-  //   const handleClick = (event) => {
-  //     setCard(event.target.value);
-  //   };
   const selectionTime = [
     { value: "interval", title: "Interval" },
     { value: "today", title: "Today" },
@@ -53,12 +50,23 @@ const Withdrawal = () => {
   const [value, setValue] = useState(new Date());
   const [amount, setAmount] = useState("");
   const [password, setPassword] = useState("");
+  useEffect(() => {
+    $(".sidebar-sublist").css({
+      "background-color": "transparent",
+      "box-shadow": "none",
+    });
+    $("#sidebar_sublist_withdrawl").css({
+      "background-color": "#e91e63",
+      "box-shadow":
+        "0 4px 20px 0px inset rgba(0, 0, 0, 0.14), 0 7px 10px -5px inset rgba(233, 30, 99, 0.4)",
+    });
+  });
   const handleAmount = (event) => {
     setAmount(event.target.value);
-  }
+  };
   const handlePassword = (event) => {
     setPassword(event.target.value);
-  }
+  };
   const handleChange = (newValue) => {
     setValue(newValue);
   };
@@ -168,7 +176,7 @@ const Withdrawal = () => {
         <Grid item sm={12}>
           <Card sx={{ background: "#00BCD4" }}>
             <CardContent>
-              <Box sx={notificationstyle.main} >
+              <Box sx={notificationstyle.main}>
                 <PriorityHighIcon
                   sx={{
                     fontSize: "25px",
@@ -187,9 +195,12 @@ const Withdrawal = () => {
                 gutterBottom
               >
                 <h3>Withdrawal rules</h3>
-                <p>The minimum amount that can be withdrawn is: 100000, the withdrawal fee is charged: 0%, and the minimum amount to be kept in the platform: 0</p>
+                <p>
+                  The minimum amount that can be withdrawn is: 100000, the
+                  withdrawal fee is charged: 0%, and the minimum amount to be
+                  kept in the platform: 0
+                </p>
               </Typography>
-            
             </CardContent>
           </Card>
         </Grid>
@@ -295,8 +306,14 @@ const Withdrawal = () => {
       <Grid container padding={2} marginTop={4}>
         <Grid item sm={12}>
           <Card sx={{ background: "white" }}>
-            <CardContent sx={{ background: "#FFA21A", margin: "5rem 1.5rem 3rem 1.5rem", borderRadius: 1}}>
-              <Box sx={notificationstyle.main} >
+            <CardContent
+              sx={{
+                background: "#FFA21A",
+                margin: "5rem 1.5rem 3rem 1.5rem",
+                borderRadius: 1,
+              }}
+            >
+              <Box sx={notificationstyle.main}>
                 <CampaignIcon
                   sx={{
                     fontSize: "25px",
@@ -314,10 +331,8 @@ const Withdrawal = () => {
                 }}
                 gutterBottom
               >
-                
                 There is no information!
               </Typography>
-            
             </CardContent>
           </Card>
         </Grid>

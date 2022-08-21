@@ -55,6 +55,10 @@ const dashboardcarddata = [
 
 const Dashboard = () => {
   useEffect(() => {
+    $(".sidebar-sublist").css({
+      "background-color": "transparent",
+      "box-shadow": "none",
+    });
     $("#sidebar_sublist_dashboard").css({
       "background-color": "#e91e63",
       "box-shadow":

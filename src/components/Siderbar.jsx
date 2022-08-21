@@ -251,6 +251,7 @@ export default function ResponsiveDrawer(props) {
               >
                 {item.sublist.map((item, i) => (
                   <li
+                    className="sidebar-sublist"
                     id={"sidebar_sublist_" + item.id}
                     key={i}
                     onClick={() => {

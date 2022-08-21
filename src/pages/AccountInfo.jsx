@@ -1,10 +1,10 @@
 import { Card, CardContent, Grid, Typography, Box } from "@mui/material";
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import AccountInfoCard from "../components/AccountInfoCard";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import AccountInfoTable from "../components/AccountInfoTable";
 import $ from "jquery";
-import "../css/AccountInfo.scss"
+import "../css/AccountInfo.scss";
 
 const styles = {
   main: {
@@ -17,16 +17,20 @@ const styles = {
 };
 
 const AccountInfo = () => {
-  // useEffect(() => {
-  //   $("#sidebar_sublist_account_info").css({
-  //     "background-color": "#e91e63",
-  //     "box-shadow":
-  //       "0 4px 20px 0px inset rgba(0, 0, 0, 0.14), 0 7px 10px -5px inset rgba(233, 30, 99, 0.4)",
-  //   });
-  // });
+  useEffect(() => {
+    $(".sidebar-sublist").css({
+      "background-color": "transparent",
+      "box-shadow": "none",
+    });
+    $("#sidebar_sublist_account_info").css({
+      "background-color": "#e91e63",
+      "box-shadow":
+        "0 4px 20px 0px inset rgba(0, 0, 0, 0.14), 0 7px 10px -5px inset rgba(233, 30, 99, 0.4)",
+    });
+  });
   return (
     <div className="account-info">
-      <Grid container padding={2} spacing={5}> 
+      <Grid container padding={2} spacing={5}>
         <Grid item md={6} sm={12}>
           <AccountInfoCard
             icon="0"
