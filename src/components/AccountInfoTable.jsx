@@ -190,6 +190,7 @@ const bankData = [
     title: "USDT TRC20",
   },
 ];
+
 const AccountInfoTable = (props) => {
   const [bank, setBank] = useState("");
   const [nickName, setNickName] = useState("");
@@ -212,16 +213,7 @@ const AccountInfoTable = (props) => {
   const handleCreateTime = (event) => {
     setCreateTime(event.target.value);
   };
-//   let bank1;
-//   const info = [bank, account, nickName, accountName];
-//   const add = () => {
-//     // info.map(row => (
-//     //     <TableRow>
-//     //         <TableCell>{row.bank}</TableCell>
-//     //     </TableRow>
-//     // ))
-//      bank1 = bank;
-//   }
+
   return (
     <div className="withdrawal-table">
       <Table>
@@ -286,12 +278,11 @@ const AccountInfoTable = (props) => {
             </TableCell>
             <TableCell align="center"></TableCell>
             <TableCell align="center">
-              <Button color="primary" startIcon={<AddIcon />} >
+              <Button color="primary" startIcon={<AddIcon />}>
                 Add
               </Button>
             </TableCell>
           </TableRow>
-       
         </TableBody>
       </Table>
     </div>
