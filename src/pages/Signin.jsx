@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
 import PublicIcon from "@mui/icons-material/Public";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import {
   Typography,
   Button,
@@ -11,36 +10,18 @@ import {
   Box,
   Container,
   Select,
-  Modal,
-  Fade,
   InputLabel,
   FormControl,
-  Backdrop,
   MenuItem,
 } from "@mui/material";
 import axios from "axios";
 import env from "react-dotenv";
-
 import "../css/Signin.scss";
-
-const style = {
-  position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 500,
-  maxWidth: "xs",
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  borderRadius: 1.5,
-  textAlign: "center",
-  p: 4,
-};
+import ErrorModal from "../components/ErrorModal";
 
 const SignIn = () => {
   const [account, setAccount] = useState("");
   const [password, setPassword] = useState("");
-  const [login, setLogin] = useState(false);
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
@@ -49,6 +30,7 @@ const SignIn = () => {
     const user = await axios.post(`${env.API_URL}/users/login`, {
       data: { name: account, password: password },
     });
+
     if (user.data != "invalid user") {
       localStorage.setItem("dibao_login", user.data.token);
       localStorage.setItem("dibao_username", user.data.name);
@@ -63,8 +45,11 @@ const SignIn = () => {
     } else {
       setValue("Incorrect Account or Password");
     }
-    setOpen(true);
+
+    handleModalOpen();
   };
+
+  const handleModalOpen = () => setOpen(true);
 
   const handleClose = () => setOpen(false);
 
@@ -130,52 +115,8 @@ const SignIn = () => {
           >
             Login
           </Button>
-
-          <Modal
-            aria-labelledby="transition-modal-title"
-            aria-describedby="transition-modal-description"
-            open={open}
-            onClose={handleClose}
-            closeAfterTransition
-            BackdropComponent={Backdrop}
-            BackdropProps={{
-              timeout: 500,
-            }}
-          >
-            <Fade in={open}>
-              <Box sx={style}>
-                <HighlightOffIcon
-                  sx={{ color: "#f27474", fontSize: "120px" }}
-                />
-                <Typography
-                  id="transition-modal-title"
-                  variant="h4"
-                  component="h2"
-                  color="action.active"
-                  fontWeight="bold"
-                  marginTop="15px"
-                >
-                  ERROR
-                </Typography>
-                <Typography
-                  id="transition-modal-description"
-                  sx={{ mt: 2 }}
-                  color="action.active"
-                >
-                  {value}
-                </Typography>
-                <Button
-                  variant="contained"
-                  color="success"
-                  sx={{ marginTop: "20px", paddingX: "30px" }}
-                  onClick={handleClose}
-                >
-                  OK
-                </Button>
-              </Box>
-            </Fade>
-          </Modal>
         </Box>
+        <ErrorModal open={open} handleClose={handleClose} value={value} />
       </Container>
       <Container maxWidth="xs" sx={{ paddingTop: "10vh" }}>
         <Box

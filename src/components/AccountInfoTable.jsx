@@ -14,6 +14,7 @@ import AddIcon from "@mui/icons-material/Add";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import env from "react-dotenv";
+import ErrorModal from "./ErrorModal";
 
 const bankData = [
   {
@@ -200,10 +201,16 @@ const AccountInfoTable = (props) => {
   const [account, setAccount] = useState("");
   const [accountName, setAccountName] = useState("");
   const [infoDatas, setInfoDatas] = useState([]);
+  const [value, setValue] = useState("");
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     fetchAccountInfos();
   });
+
+  const handleModalOpen = () => setOpen(true);
+
+  const handleClose = () => setOpen(false);
 
   const fetchAccountInfos = async () => {
     const accountDatas = await axios.get(`${env.API_URL}/accountInfo/datas`);
@@ -212,6 +219,11 @@ const AccountInfoTable = (props) => {
 
   const handleCreateAccountData = (e) => {
     e.preventDefault();
+    if (!bank || !nickName || !account || !accountName) {
+      setValue("Plz fill out all fields");
+      handleModalOpen();
+      return;
+    }
     const createDatas = {
       type: bank,
       nickName: nickName,
@@ -338,6 +350,7 @@ const AccountInfoTable = (props) => {
           ))}
         </TableBody>
       </Table>
+      <ErrorModal open={open} handleClose={handleClose} value={value} />
     </div>
   );
 };
