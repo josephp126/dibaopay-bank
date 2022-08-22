@@ -19,6 +19,7 @@ import {
   MenuItem,
 } from "@mui/material";
 import axios from "axios";
+import env from "react-dotenv";
 
 import "../css/Signin.scss";
 
@@ -45,7 +46,7 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleOpen = async () => {
-    const user = await axios.post("http://localhost:5000/users/login", {
+    const user = await axios.post(`${env.API_URL}/users/login`, {
       data: { name: account, password: password },
     });
     if (user.data != "invalid user") {

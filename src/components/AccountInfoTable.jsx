@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableHead,
@@ -11,6 +11,9 @@ import {
   Button,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import CloseIcon from "@mui/icons-material/Close";
+import axios from "axios";
+import env from "react-dotenv";
 
 const bankData = [
   {
@@ -197,6 +200,16 @@ const AccountInfoTable = (props) => {
   const [account, setAccount] = useState("");
   const [accountName, setAccountName] = useState("");
   const [createTime, setCreateTime] = useState("");
+  const [infoDatas, setInfoDatas] = useState([]);
+
+  useEffect(() => {
+    fetchAccountInfos();
+  });
+
+  const fetchAccountInfos = async () => {
+    const accountDatas = await axios.get(`${env.API_URL}/accountInfo/datas`);
+    setInfoDatas(accountDatas.data);
+  };
 
   const handleBank = (event) => {
     setBank(event.target.value);
@@ -283,6 +296,21 @@ const AccountInfoTable = (props) => {
               </Button>
             </TableCell>
           </TableRow>
+          {infoDatas.map((item, i) => (
+            <TableRow key={i}>
+              <TableCell align="center">{item.id}</TableCell>
+              <TableCell align="center">{item.type}</TableCell>
+              <TableCell align="center">{item.nickname}</TableCell>
+              <TableCell align="center">{item.account}</TableCell>
+              <TableCell align="center">{item.accountName}</TableCell>
+              <TableCell align="center">{item.created_at}</TableCell>
+              <TableCell align="center">
+                <Button>
+                  <CloseIcon />
+                </Button>
+              </TableCell>
+            </TableRow>
+          ))}
         </TableBody>
       </Table>
     </div>
@@ -290,3 +318,10 @@ const AccountInfoTable = (props) => {
 };
 
 export default AccountInfoTable;
+
+const styles = {
+  closeIcon: {
+    backgroundColor: "#f44336",
+    borderRadius: "5px",
+  },
+};

@@ -6,6 +6,8 @@ import { Box } from "@mui/material";
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { IdleTimerProvider } from "react-idle-timer";
+import env from "react-dotenv";
+
 const PageLayout = () => {
   const idleTimerRef = useRef(null);
   const [isUserIdle, setIsUserIdle] = useState(false);
@@ -20,7 +22,7 @@ const PageLayout = () => {
   };
 
   const verifyToken = async () => {
-    const verify = await axios.post("http://localhost:5000/users/verifytoken", {
+    const verify = await axios.post(`${env.API_URL}/users/verifytoken`, {
       token: localStorage.getItem("dibao_login"),
     });
     if (verify.data != "success") {
