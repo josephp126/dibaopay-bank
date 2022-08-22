@@ -57,8 +57,6 @@ const Withdrawal = () => {
     });
     $("#sidebar_sublist_withdrawl").css({
       "background-color": "#e91e63",
-      "box-shadow":
-        "0 4px 20px 0px inset rgba(0, 0, 0, 0.14), 0 7px 10px -5px inset rgba(233, 30, 99, 0.4)",
     });
   });
   const handleAmount = (event) => {

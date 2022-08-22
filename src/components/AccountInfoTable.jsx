@@ -199,7 +199,6 @@ const AccountInfoTable = (props) => {
   const [nickName, setNickName] = useState("");
   const [account, setAccount] = useState("");
   const [accountName, setAccountName] = useState("");
-  const [createTime, setCreateTime] = useState("");
   const [infoDatas, setInfoDatas] = useState([]);
 
   useEffect(() => {
@@ -209,6 +208,28 @@ const AccountInfoTable = (props) => {
   const fetchAccountInfos = async () => {
     const accountDatas = await axios.get(`${env.API_URL}/accountInfo/datas`);
     setInfoDatas(accountDatas.data);
+  };
+
+  const handleCreateAccountData = (e) => {
+    e.preventDefault();
+    const createDatas = {
+      type: bank,
+      nickName: nickName,
+      account: account,
+      accountName: accountName,
+    };
+    axios
+      .post(`${env.API_URL}/accountInfo/create`, {
+        data: createDatas,
+      })
+      .then((datas) => {
+        console.log(datas.data);
+      });
+  };
+
+  const handleDeleteAccountData = (e, idx) => {
+    e.preventDefault();
+    axios.delete(`${env.API_URL}/accountInfo/delete/${idx}`).then((data) => {});
   };
 
   const handleBank = (event) => {
@@ -222,9 +243,6 @@ const AccountInfoTable = (props) => {
   };
   const handleAccountName = (event) => {
     setAccountName(event.target.value);
-  };
-  const handleCreateTime = (event) => {
-    setCreateTime(event.target.value);
   };
 
   return (
@@ -291,7 +309,11 @@ const AccountInfoTable = (props) => {
             </TableCell>
             <TableCell align="center"></TableCell>
             <TableCell align="center">
-              <Button color="primary" startIcon={<AddIcon />}>
+              <Button
+                color="primary"
+                startIcon={<AddIcon />}
+                onClick={(e) => handleCreateAccountData(e)}
+              >
                 Add
               </Button>
             </TableCell>
@@ -300,13 +322,16 @@ const AccountInfoTable = (props) => {
             <TableRow key={i}>
               <TableCell align="center">{item.id}</TableCell>
               <TableCell align="center">{item.type}</TableCell>
-              <TableCell align="center">{item.nickname}</TableCell>
+              <TableCell align="center">{item.nickName}</TableCell>
               <TableCell align="center">{item.account}</TableCell>
               <TableCell align="center">{item.accountName}</TableCell>
               <TableCell align="center">{item.created_at}</TableCell>
               <TableCell align="center">
-                <Button>
-                  <CloseIcon />
+                <Button
+                  sx={styles.closeBtn}
+                  onClick={(e) => handleDeleteAccountData(e, item.id)}
+                >
+                  <CloseIcon sx={styles.closeIcon} />
                 </Button>
               </TableCell>
             </TableRow>
@@ -321,7 +346,15 @@ export default AccountInfoTable;
 
 const styles = {
   closeIcon: {
+    color: "white",
+  },
+  closeBtn: {
     backgroundColor: "#f44336",
     borderRadius: "5px",
+    border: "none",
+    width: "15px",
+    "&:hover": {
+      backgroundColor: "#f99306",
+    },
   },
 };
