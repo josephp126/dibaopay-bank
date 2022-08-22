@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Grid,
   Card,
@@ -16,6 +16,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import DashboardCard from "../components/DashboardCard";
 import SummaryReportTable from "../components/SummaryReportTable";
+import $ from "jquery";
 
 const styles = {
   main: {
@@ -333,6 +334,19 @@ const SummaryReport = () => {
   const [selection_time, setSelection_time] = useState("");
   const [start_time, setStart_time] = useState(new Date());
   const [end_time, setEnd_time] = useState(new Date());
+
+  useEffect(() => {
+    $(".sidebar-sublist").css({
+      "background-color": "transparent",
+      "box-shadow": "none",
+    });
+    $("#sidebar_sublist_summary_report").css({
+      "background-color": "#e91e63",
+      "box-shadow":
+        "0 4px 20px 0px inset rgba(0, 0, 0, 0.14), 0 7px 10px -5px inset rgba(233, 30, 99, 0.4)",
+    });
+  });
+
   const handleStartTime = (startTime) => {
     setStart_time(startTime);
   };
