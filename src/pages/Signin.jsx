@@ -54,6 +54,7 @@ const SignIn = () => {
       localStorage.setItem("dibao_userId", user.data.id);
       navigate("/dashboard");
     }
+
     if (account === "") {
       setValue("Account is not entered");
     } else if (password === "") {

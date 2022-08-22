@@ -6,6 +6,7 @@ import Dashboard from "./pages/Dashboard";
 import PageLayout from "./pages/PageLayout";
 import Withdrawal from "./pages/Withdrawal";
 import AccountInfo from "./pages/AccountInfo";
+import SummaryReport from "./pages/SummaryReport";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
@@ -20,6 +21,7 @@ root.render(
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/accountInfo" element={<AccountInfo />} />
           <Route path="/withdrawal" element={<Withdrawal />} />
+          <Route path="summary_report" element={<SummaryReport />} />
         </Route>
       </Routes>
     </BrowserRouter>
