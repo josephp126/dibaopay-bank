@@ -45,7 +45,7 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleOpen = async () => {
-    const user = await axios.post("http://66.94.98.22:5000/users/login", {
+    const user = await axios.post("http://localhost:5000/users/login", {
       data: { name: account, password: password },
     });
     if (user.data != "invalid user") {
@@ -54,9 +54,6 @@ const SignIn = () => {
       localStorage.setItem("dibao_userId", user.data.id);
       navigate("/dashboard");
     }
-    // if (account == "test" && password == "test") {
-    //   navigate("/dashboard");
-    // }
     if (account === "") {
       setValue("Account is not entered");
     } else if (password === "") {

@@ -29,6 +29,9 @@ const PageLayout = () => {
   };
   useEffect(() => {
     verifyToken();
+    if (!localStorage.getItem("dibao_login")) {
+      navigate("/");
+    }
   });
   return (
     <IdleTimerProvider
