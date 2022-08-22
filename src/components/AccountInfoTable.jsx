@@ -213,7 +213,9 @@ const AccountInfoTable = (props) => {
   const handleClose = () => setOpen(false);
 
   const fetchAccountInfos = async () => {
-    const accountDatas = await axios.get(`${env.API_URL}/accountInfo/datas`);
+    const accountDatas = await axios.get(
+      `${env.API_URL}/accountInfo/datas/${localStorage.getItem("dibao_userId")}`
+    );
     setInfoDatas(accountDatas.data);
   };
 
@@ -224,12 +226,15 @@ const AccountInfoTable = (props) => {
       handleModalOpen();
       return;
     }
+
     const createDatas = {
       type: bank,
       nickName: nickName,
       account: account,
       accountName: accountName,
+      userId: Number(localStorage.getItem("dibao_userId")),
     };
+
     axios
       .post(`${env.API_URL}/accountInfo/create`, {
         data: createDatas,
