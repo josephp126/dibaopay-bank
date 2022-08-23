@@ -10,74 +10,52 @@ const dashboardcarddata = [
   {
     background: "#268bd2",
     title: "Number of orders",
-    count: "163",
+    count: "83",
     introduction: "The total number of orders under search conditions",
   },
   {
     background: "#2aa198",
     title: "Number of successful orders",
-    count: "107",
+    count: "63",
     introduction:
       "The total number of successful orders under search conditions",
   },
   {
     background: "#d33682",
     title: "Number of failed orders",
-    count: "3",
+    count: "0",
     introduction:
       "The total number of failed orders under the search conditions",
   },
   {
     background: "#2aa198",
     title: "Amount of successful order",
-    count: "67",
+    count: "63",
     introduction: "Successfully placed the order under the search conditions",
   },
   {
     background: "#d33682",
     title: "Number of failed orders",
-    count: "1",
+    count: "0",
     introduction:
       "The total number of failed orders under the search conditions",
   },
   {
     background: "#ff9800",
     title: "Amount of successful order",
-    count: "50,210,000",
+    count: "35,975,000",
     introduction:
       "The total amount of the orders that were successfully placed under the search conditions",
   },
-
-  {
-    background: "#2aa198",
-    title: "Number of successful orders",
-    count: "40",
-    introduction:
-      "The total number of successful orders under the search conditions",
-  },
-  {
-    background: "#d33682",
-    title: "Amount of failed payment",
-    count: "2",
-    introduction:
-      "The total number of failed orders under the search conditions",
-  },
-  {
-    background: "#ff9800",
-    title: "Amount of successful payment",
-    count: "102,128,000",
-    introduction:
-      " The total amount of orders that have been successfully paid under the search conditions",
-  },
 ];
 
-const SummaryReport = () => {
+const ReceivePaymentReport = () => {
   useEffect(() => {
     $(".sidebar-sublist").css({
       "background-color": "transparent",
       "box-shadow": "none",
     });
-    $("#sidebar_sublist_summary_report").css({
+    $("#sidebar_sublist_receive_report").css({
       "background-color": "#e91e63",
     });
   });
@@ -101,7 +79,7 @@ const SummaryReport = () => {
           ))}
         </Grid>
         <Grid container marginTop={4}>
-          <Grid item xs={12}>
+          <Grid item sm={12}>
             <Card sx={{ width: "100%" }}>
               <CardContent>
                 <SummaryReportTable />
@@ -114,4 +92,4 @@ const SummaryReport = () => {
   );
 };
 
-export default SummaryReport;
+export default ReceivePaymentReport;

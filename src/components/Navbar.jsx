@@ -124,7 +124,7 @@ const Navbar = () => {
         setTitle("Withdrawal");
         break;
       }
-      case "/summary-report": {
+      case "/summary_report": {
         setTitle("Summary Report");
         break;
       }

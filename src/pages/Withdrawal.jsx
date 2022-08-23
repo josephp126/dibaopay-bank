@@ -286,12 +286,11 @@ const Withdrawal = () => {
                   <Box display="flex" justifyContent="flex-end">
                     <Button
                       variant="contained"
-                      color="warning"
-                      sx={{ marginRight: 2 }}
+                      sx={{ marginRight: 2, backgroundColor: "#ec407a" }}
                     >
                       CLEAR
                     </Button>
-                    <Button variant="contained" color="error">
+                    <Button variant="contained" sx={{backgroundColor: "#00BCD4"}}>
                       SEARCH
                     </Button>
                   </Box>

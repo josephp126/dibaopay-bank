@@ -1,12 +1,16 @@
 import React, { useState } from "react";
-import Paper from "@mui/material/Paper";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TablePagination from "@mui/material/TablePagination";
-import TableRow from "@mui/material/TableRow";
+import {
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TablePagination,
+  TableRow,
+  Button,
+  Box,
+} from "@mui/material";
 
 const columns = [
   { id: "transactionNumber", label: "Transaction number" },
@@ -116,7 +120,7 @@ const rows = [
 ];
 export default function SummaryReportTable() {
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(20);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -129,6 +133,14 @@ export default function SummaryReportTable() {
 
   return (
     <Paper sx={{ overflow: "hidden" }}>
+      <Box display="flex" justifyContent="flex-end">
+        <Button variant="contained" sx={{ backgroundColor: "#FF9800" }}>
+          CAN ONLY DOWNLOAD UP TO 5000 EXCEL
+        </Button>
+        <Button variant="contained" sx={{ backgroundColor: "#9C27B0" }}>
+          DOWNLOAD EXCEL
+        </Button>
+      </Box>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
@@ -137,7 +149,6 @@ export default function SummaryReportTable() {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
                 >
                   {column.label}
                 </TableCell>
@@ -167,7 +178,7 @@ export default function SummaryReportTable() {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[20, 50, 100, 200]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}
