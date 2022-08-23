@@ -48,7 +48,7 @@ const PageLayout = () => {
           <Outlet />
         </Box>
       </Box>
-    </IdleTimerProvider>
+   </IdleTimerProvider>
   );
 };
 

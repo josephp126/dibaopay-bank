@@ -6,7 +6,7 @@ import {
   Box,
   CardContent,
   TextField,
-  Select,
+  NativeSelect,
   MenuItem,
   Button,
 } from "@mui/material";
@@ -73,6 +73,11 @@ const Withdrawal = () => {
     setEndDate(newDate);
   };
 
+  const handleChange = (e) => {
+    const currentDate = e.currentTarget;
+    console.log(currentDate)
+  }
+
   return (
     <div className="withdrawal" style={{ width: "100%" }}>
       <Grid container padding={2} marginTop={4}>
@@ -110,25 +115,26 @@ const Withdrawal = () => {
               </Typography>
               <Grid container spacing={5} padding={2}>
                 <Grid item lg={4} md={12}>
-                  <Select
-                    defaultValue="DUONGVULONG"
-                    // value={card}
+                  <NativeSelect
+                    value="DUONGVULONG"
                     // onChange={handleClick}
                     displayEmpty
+                    variant="outlined"
                     sx={{
                       background: "#9C27B0",
                       border: "none",
                       color: "white",
                       width: "100%",
+                      marginTop: "16px"
                     }}
                   >
-                    <MenuItem value="DUONGVULONG">
+                    <option value="DUONGVULONG" sx={{backgroundColor: "red"}}>
                       DUONGVULONG (9017041457062 - DUONGVULONG)
-                    </MenuItem>
-                    <MenuItem value="LENGOCGIAO">
+                    </option>
+                    <option value="LENGOCGIAO">
                       LENGOCGIAO (19038113408012 - LENGOCGIAO)
-                    </MenuItem>
-                  </Select>
+                    </option>
+                  </NativeSelect>
                 </Grid>
                 <Grid item lg={4} md={12}>
                   <TextField
@@ -250,10 +256,10 @@ const Withdrawal = () => {
               </Typography>
               <Grid container spacing={5} padding={2}>
                 <Grid item lg={4} md={12}>
-                  <Select
+                  <NativeSelect
                     defaultValue={"interval"}
                     // value={card}
-                    // onChange={handleClick}
+                    onChange={(e) => handleChange(e)}
                     displayEmpty
                     variant="standard"
                     sx={{
@@ -263,11 +269,11 @@ const Withdrawal = () => {
                     }}
                   >
                     {selectionTime.map((data, idx) => (
-                      <MenuItem value={data.value} key={idx}>
+                      <option value={data.value} key={idx} >
                         {data.title}
-                      </MenuItem>
+                      </option>
                     ))}
-                  </Select>
+                  </NativeSelect>
                 </Grid>
                 <Grid item lg={4} md={12}>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
