@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import PersonIcon from "@mui/icons-material/Person";
 import LockIcon from "@mui/icons-material/Lock";
@@ -31,14 +31,13 @@ const SignIn = () => {
       data: { name: account, password: password },
     });
 
-    if (user.data != "invalid user") {
+    if (user.data !== "invalid user") {
       localStorage.setItem("dibao_login", user.data.token);
       localStorage.setItem("dibao_username", user.data.name);
       localStorage.setItem("dibao_userId", user.data.id);
       navigate("/dashboard");
     }
 
-  
     if (account === "") {
       setValue("Account is not entered");
     } else if (password === "") {

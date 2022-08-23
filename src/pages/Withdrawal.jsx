@@ -14,9 +14,9 @@ import AddIcon from "@mui/icons-material/Add";
 import SearchIcon from "@mui/icons-material/Search";
 import PriorityHighIcon from "@mui/icons-material/PriorityHigh";
 import CampaignIcon from "@mui/icons-material/Campaign";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import $ from "jquery";
 
 const styles = {
@@ -47,7 +47,8 @@ const Withdrawal = () => {
     { value: "thismonth", title: "This Month" },
     { value: "lastmonth", title: "Last Month" },
   ];
-  const [value, setValue] = useState(new Date());
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
   const [amount, setAmount] = useState("");
   const [password, setPassword] = useState("");
   useEffect(() => {
@@ -65,9 +66,13 @@ const Withdrawal = () => {
   const handlePassword = (event) => {
     setPassword(event.target.value);
   };
-  const handleChange = (newValue) => {
-    setValue(newValue);
+  const handleStartDate = (newDate) => {
+    setStartDate(newDate);
   };
+  const handleEndDate = (newDate) => {
+    setEndDate(newDate);
+  };
+
   return (
     <div className="withdrawal" style={{ width: "100%" }}>
       <Grid container padding={2} marginTop={4}>
@@ -186,18 +191,25 @@ const Withdrawal = () => {
 
               <Typography
                 sx={{
+                  fontSize: 30,
+                  color: "white",
+                  marginLeft: "80px",
+                }}
+                gutterBottom
+              >
+                Withdrawal rules
+              </Typography>
+              <Typography
+                sx={{
                   fontSize: 20,
                   color: "white",
                   marginLeft: "80px",
                 }}
                 gutterBottom
               >
-                <h3>Withdrawal rules</h3>
-                <p>
-                  The minimum amount that can be withdrawn is: 100000, the
-                  withdrawal fee is charged: 0%, and the minimum amount to be
-                  kept in the platform: 0
-                </p>
+                The minimum amount that can be withdrawn is: 100000, the
+                withdrawal fee is charged: 0%, and the minimum amount to be kept
+                in the platform: 0
               </Typography>
             </CardContent>
           </Card>
@@ -259,10 +271,10 @@ const Withdrawal = () => {
                 </Grid>
                 <Grid item lg={4} md={12}>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                      inputFormat="MM/dd/yyyy"
-                      value={value}
-                      onChange={handleChange}
+                    <DateTimePicker
+                      // inputFormat="MM/dd/yyyy"
+                      value={startDate}
+                      onChange={handleStartDate}
                       renderInput={(params) => (
                         <TextField {...params} fullWidth />
                       )}
@@ -271,17 +283,16 @@ const Withdrawal = () => {
                 </Grid>
                 <Grid item lg={4} md={12}>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                      inputFormat="MM/dd/yyyy"
-                      value={value}
-                      onChange={handleChange}
+                    <DateTimePicker
+                      // inputFormat="MM/dd/yyyy"
+                      value={endDate}
+                      onChange={handleEndDate}
                       renderInput={(params) => (
                         <TextField {...params} fullWidth />
                       )}
                     />
                   </LocalizationProvider>
                 </Grid>
-
                 <Grid item lg={12} sx={{ paddingTop: "20px !important" }}>
                   <Box display="flex" justifyContent="flex-end">
                     <Button
@@ -290,7 +301,10 @@ const Withdrawal = () => {
                     >
                       CLEAR
                     </Button>
-                    <Button variant="contained" sx={{backgroundColor: "#00BCD4"}}>
+                    <Button
+                      variant="contained"
+                      sx={{ backgroundColor: "#00BCD4" }}
+                    >
                       SEARCH
                     </Button>
                   </Box>

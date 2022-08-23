@@ -11,7 +11,7 @@ import {
     TextField,
   } from "@mui/material";
   import SearchIcon from "@mui/icons-material/Search";
-  import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
+  import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
   import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
   import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
   const styles = {
@@ -482,9 +482,8 @@ const ReportCard = () => {
             </Grid>
             <Grid item lg={2} md={4} sm={12} xs={12}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DesktopDatePicker
+                <DateTimePicker
                   id="start_time"
-                  inputFormat="MM/dd/yyyy"
                   value={start_time}
                   onChange={handleStartTime}
                   renderInput={(params) => (
@@ -495,9 +494,8 @@ const ReportCard = () => {
             </Grid>
             <Grid item lg={2} md={4} sm={12} xs={12}>
               <LocalizationProvider dateAdapter={AdapterDateFns}>
-                <DesktopDatePicker
+                <DateTimePicker
                   id="end_time"
-                  inputFormat="MM/dd/yyyy"
                   value={end_time}
                   onChange={handleEndTime}
                   renderInput={(params) => (

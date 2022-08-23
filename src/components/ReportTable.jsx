@@ -13,62 +13,63 @@ import {
 } from "@mui/material";
 
 const columns = [
-  { id: "transactionNumber", label: "Transaction number" },
+  { id: "transactionNumber", label: "Transaction number", align: "center" },
   {
     id: "member_number",
     label: "Member`s corresponding number",
+    align: "center",
   },
   {
     id: "number",
     label: "附言",
-    align: "right",
+    align: "center",
   },
   {
     id: "payment",
     label: "Payment Types",
-    align: "right",
+    align: "center",
   },
   {
     id: "bank",
     label: "Bank",
-    align: "right",
+    align: "center",
   },
   {
     id: "account",
     label: "Account",
-    align: "right",
+    align: "center",
   },
   {
     id: "existing_amount",
     label: "Existing amount",
-    align: "right",
+    align: "center",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "actual_amount",
     label: "Actual amount",
-    align: "right",
+    align: "center",
     format: (value) => value.toLocaleString("en-US"),
   },
   {
     id: "status",
     label: "Status",
-    align: "right",
+    align: "center",
   },
   {
     id: "create_time",
-    label: "Creationg time",
-    align: "right",
+    label: "Creation time",
+    align: "center",
   },
   {
     id: "modified_time",
     label: "Modified time",
-    align: "right",
+    align: "center",
   },
   {
     id: "details",
     label: "Details",
-    align: "right",
+    align: "center",
   },
 ];
 
@@ -146,10 +147,7 @@ export default function SummaryReportTable() {
           <TableHead>
             <TableRow>
               {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                >
+                <TableCell key={column.id} align={column.align}>
                   {column.label}
                 </TableCell>
               ))}
