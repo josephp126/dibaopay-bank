@@ -370,7 +370,7 @@ const styles = {
     backgroundColor: "#f44336",
     borderRadius: "5px",
     border: "none",
-    width: "15px",
+    minWidth: "15px",
     "&:hover": {
       backgroundColor: "#f99306",
     },
