@@ -114,6 +114,9 @@ const rows = [
     ""
   ),
 ];
+
+const style = {};
+
 export default function SummaryReportTable() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);

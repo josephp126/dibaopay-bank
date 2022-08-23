@@ -17,6 +17,7 @@ const PageLayout = () => {
   const userIdle = (state) => {
     setIsUserIdle(state);
     if (isUserIdle) {
+      localStorage.setItem("dibao_login", "");
       navigate("/");
     }
   };
@@ -29,6 +30,7 @@ const PageLayout = () => {
       navigate("/");
     }
   };
+
   useEffect(() => {
     verifyToken();
     if (!localStorage.getItem("dibao_login")) {
