@@ -145,7 +145,7 @@ export default function SummaryReportTable() {
           DOWNLOAD EXCEL
         </Button>
       </Box>
-      <TableContainer sx={{ maxHeight: 440 }}>
+      <TableContainer>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>

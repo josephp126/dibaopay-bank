@@ -7,7 +7,6 @@ import {
   CardContent,
   TextField,
   NativeSelect,
-  MenuItem,
   Button,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
@@ -51,6 +50,7 @@ const Withdrawal = () => {
   const [endDate, setEndDate] = useState(new Date());
   const [amount, setAmount] = useState("");
   const [password, setPassword] = useState("");
+  const [card, setCard] = useState("");
   useEffect(() => {
     $(".sidebar-sublist").css({
       "background-color": "transparent",
@@ -72,11 +72,94 @@ const Withdrawal = () => {
   const handleEndDate = (newDate) => {
     setEndDate(newDate);
   };
-
-  const handleChange = (e) => {
-    const currentDate = e.currentTarget;
-    console.log(currentDate)
-  }
+  const handleCard = (e) => {
+    setCard(e.target.value);
+  };
+  const handleSelectTime = (e) => {
+    let date = new Date();
+    const currentDate = e.currentTarget.value;
+    switch (currentDate) {
+      case "today": {
+        setStartDate(
+          `${date.getFullYear()}-${
+            date.getMonth() + 1
+          }-${date.getDate()} 00:00:00`
+        );
+        setEndDate(
+          `${date.getFullYear()}-${
+            date.getMonth() + 1
+          }-${date.getDate()} 23:59:59`
+        );
+        break;
+      }
+      case "lastday": {
+        setStartDate(
+          `${date.getFullYear()}-${date.getMonth() + 1}-${
+            date.getDate() - 1
+          } 00:00:00`
+        );
+        setEndDate(
+          `${date.getFullYear()}-${date.getMonth() + 1}-${
+            date.getDate() - 1
+          } 23:59:59`
+        );
+        break;
+      }
+      case "thisweek": {
+        setStartDate(
+          `${date.getFullYear()}-${date.getMonth() + 1}-${
+            date.getDate() - date.getDay()
+          } 00:00:00`
+        );
+        setEndDate(
+          `${date.getFullYear()}-${date.getMonth() + 1}-${
+            date.getDate() + 6 - date.getDay()
+          } 23:59:59`
+        );
+        break;
+      }
+      case "lastweek": {
+        setStartDate(
+          `${date.getFullYear()}-${date.getMonth() + 1}-${
+            date.getDate() - date.getDay() - 7
+          } 00:00:00`
+        );
+        setEndDate(
+          `${date.getFullYear()}-${date.getMonth() + 1}-${
+            date.getDate() - 1 - date.getDay()
+          } 23:59:59`
+        );
+        break;
+      }
+      case "thismonth": {
+        setStartDate(
+          `${date.getFullYear()}-${date.getMonth() + 1}-01 00:00:00`
+        );
+        setEndDate(
+          `${date.getFullYear()}-${date.getMonth() + 1}-${new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            0
+          ).getDate()} 23:59:59`
+        );
+        break;
+      }
+      case "lastmonth": {
+        setStartDate(`${date.getFullYear()}-${date.getMonth()}-01 00:00:00`);
+        setEndDate(
+          `${date.getFullYear()}-${date.getMonth()}-${new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            0
+          ).getDate()} 23:59:59`
+        );
+        break;
+      }
+      default:
+        break;
+    }
+    console.log(currentDate);
+  };
 
   return (
     <div className="withdrawal" style={{ width: "100%" }}>
@@ -116,22 +199,24 @@ const Withdrawal = () => {
               <Grid container spacing={5} padding={2}>
                 <Grid item lg={4} md={12}>
                   <NativeSelect
-                    value="DUONGVULONG"
-                    // onChange={handleClick}
-                    displayEmpty
-                    variant="outlined"
+                    value={card}
+                    onChange={handleCard}
                     sx={{
                       background: "#9C27B0",
-                      border: "none",
                       color: "white",
+                      border: "2px solid black",
                       width: "100%",
-                      marginTop: "16px"
+                      marginTop: "14px",
+                      borderRadius: 1,
                     }}
                   >
-                    <option value="DUONGVULONG" sx={{backgroundColor: "red"}}>
+                    <option
+                      value="DUONGVULONG"
+                      style={{ color: "black", paddingTop: "10px" }}
+                    >
                       DUONGVULONG (9017041457062 - DUONGVULONG)
                     </option>
-                    <option value="LENGOCGIAO">
+                    <option value="LENGOCGIAO" style={{ color: "black" }}>
                       LENGOCGIAO (19038113408012 - LENGOCGIAO)
                     </option>
                   </NativeSelect>
@@ -259,8 +344,7 @@ const Withdrawal = () => {
                   <NativeSelect
                     defaultValue={"interval"}
                     // value={card}
-                    onChange={(e) => handleChange(e)}
-                    displayEmpty
+                    onChange={(e) => handleSelectTime(e)}
                     variant="standard"
                     sx={{
                       border: "none",
@@ -269,7 +353,7 @@ const Withdrawal = () => {
                     }}
                   >
                     {selectionTime.map((data, idx) => (
-                      <option value={data.value} key={idx} >
+                      <option value={data.value} key={idx}>
                         {data.title}
                       </option>
                     ))}
