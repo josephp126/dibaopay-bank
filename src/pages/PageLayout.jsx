@@ -26,7 +26,7 @@ const PageLayout = () => {
     const verify = await axios.post(`${env.API_URL}/users/verifytoken`, {
       token: localStorage.getItem("dibao_login"),
     });
-    if (verify.data != "success") {
+    if (verify.data !== "success") {
       navigate("/");
     }
   };
@@ -50,7 +50,7 @@ const PageLayout = () => {
           <Outlet />
         </Box>
       </Box>
-    </IdleTimerProvider>
+   </IdleTimerProvider>
   );
 };
 

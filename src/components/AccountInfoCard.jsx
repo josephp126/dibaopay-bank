@@ -36,7 +36,6 @@ const AccountInfoCard = (props) => {
             ) : (
               <AdminPanelSettingsIcon
                 sx={{
-              
                   color: "white",
                   borderRadius: "3px",
                 }}
@@ -76,7 +75,7 @@ const AccountInfoCard = (props) => {
             sx={{ width: "100%", paddingY: 1 }}
           />
           <div className="send">
-            <Button variant="contained" color="secondary">
+            <Button variant="contained" sx={{ backgroundColor: "#ec407a" }}>
               SEND
             </Button>
           </div>
