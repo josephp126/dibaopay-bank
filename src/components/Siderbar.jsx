@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Text from "@mui/material/ListItemText";
 import CssBaseline from "@mui/material/CssBaseline";
@@ -7,8 +7,6 @@ import Divider from "@mui/material/Divider";
 import Drawer from "@mui/material/Drawer";
 import MenuIcon from "@mui/icons-material/Menu";
 import { IconButton } from "@mui/material";
-import ArrowDropDown from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUp from "@mui/icons-material/ArrowDropUp";
 import Toolbar from "@mui/material/Toolbar";
 import $ from "jquery";
 import "../css/Sidebar.scss";
@@ -17,211 +15,138 @@ import sidebarData from "./Sidebardata";
 const drawerWidth = 300;
 
 export default function ResponsiveDrawer(props) {
+  const pathname = useLocation().pathname;
   const { window } = props;
   const router = useNavigate();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [subDashboardFlag, setsubDashboardFlag] = useState(true);
-  const [subAccountFlag, setsubAccountFlag] = useState(true);
-  const [subReportFlag, setsubReportFlag] = useState(true);
-  const [subChartFlag, setsubChartFlag] = useState(true);
-  const [subSystemFlag, setsubSystemFlag] = useState(true);
-  const [subRecordFlag, setsubRecordFlag] = useState(true);
+  const [subno, setSubNo] = useState(false);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
 
+  const handleSublist = (e, no, link) => {
+    e.preventDefault();
+    console.log($(".MuiSvgIcon-root")[0].dataset);
+    for (let i = 0; i < $(".MuiSvgIcon-root").length; i++) {
+      $(`#icon_${i + 1}`).html("");
+      $(`#icon_${i + 1}`).append(`
+        <svg
+        id=arrowIcon_${no}
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root arrow-icons"
+        focusable="false"
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        data-testid="ArrowDropDownIcon"
+      >
+        <path d="m7 10 5 5 5-5z"></path>
+      </svg>`);
+    }
+    $(`#icon_${no}`).html("");
+    $(`#icon_${no}`).css("margin", "0px");
+    $(`#icon_${no}`).append(`
+      <svg
+        id=arrowIcon_${no}
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+        focusable="false"
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        data-testid="ArrowDropUpIcon"
+      >
+        <path d="m7 14 5-5 5 5z"></path>
+      </svg>`);
+    router(link);
+  };
+
   const handleMainMenu = (e, no) => {
     e.preventDefault();
-    switch (no) {
-      case 1: {
-        $("#icon_dashboard").html("");
-        $("#subMenu_dashboard").slideToggle();
-        if (subDashboardFlag == true) {
-          setsubDashboardFlag(false);
-          $("#icon_dashboard").append(`
-            <svg
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              data-testid="ArrowDropUpIcon"
-            >
-              <path d="m7 14 5-5 5 5z"></path>
-            </svg>`);
-        } else {
-          setsubDashboardFlag(true);
-          $("#icon_dashboard").append(`
-            <svg
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              data-testid="ArrowDropDownIcon"
-            >
-            <path d="m7 10 5 5 5-5z"></path>
-          </svg>`);
-        }
-        $("#icon_dashboard").css("margin", "0px");
+    $(`#icon_${no}`).css("margin", "0px");
+    $(`#subMenu_${no}`).slideToggle();
+    if ($(`#arrowIcon_${no}`)[0].dataset.testid == "ArrowDropDownIcon") {
+      $(`#icon_${no}`).html(" ");
+      $(`#icon_${no}`).append(`
+      <svg
+        id=arrowIcon_${no}
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root arrow-icons"
+        focusable="false"
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        data-testid="ArrowDropUpIcon"
+      >
+        <path d="m7 14 5-5 5 5z"></path>
+      </svg>`);
+    } else {
+      $(`#icon_${no}`).html(" ");
+      $(`#icon_${no}`).append(`
+      <svg
+        id=arrowIcon_${no}
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root arrow-icons"
+        focusable="false"
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        data-testid="ArrowDropDownIcon"
+      >
+        <path d="m7 10 5 5 5-5z"></path>
+      </svg>`);
+    }
+  };
+
+  useEffect(() => {
+    switch (pathname) {
+      case "/dashboard": {
+        setSubNo(1);
         break;
       }
-      case 2: {
-        $("#icon_management_accounting").html("");
-        $("#subMenu_management_accounting").slideToggle();
-        if (subAccountFlag == true) {
-          setsubAccountFlag(false);
-          $("#icon_management_accounting").append(`
-            <svg
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-            focusable="false"
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            data-testid="ArrowDropUpIcon"
-          >
-            <path d="m7 14 5-5 5 5z"></path>
-          </svg>`);
-        } else {
-          setsubAccountFlag(true);
-          $("#icon_management_accounting").append(`
-            <svg
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              data-testid="ArrowDropDownIcon"
-            >
-            <path d="m7 10 5 5 5-5z"></path>
-          </svg>`);
-        }
-        $("#icon_management_accounting").css("margin", "0px");
+      case "/accountInfo": {
+        setSubNo(1);
         break;
       }
-      case 3: {
-        $("#icon_report_management").html("");
-        $("#subMenu_report_management").slideToggle();
-        if (subReportFlag == true) {
-          setsubReportFlag(false);
-          $("#icon_report_management").append(`
-            <svg
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-            focusable="false"
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            data-testid="ArrowDropUpIcon"
-          >
-            <path d="m7 14 5-5 5 5z"></path>
-          </svg>`);
-        } else {
-          setsubReportFlag(true);
-          $("#icon_report_management").append(`
-            <svg
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              data-testid="ArrowDropDownIcon"
-            >
-            <path d="m7 10 5 5 5-5z"></path>
-          </svg>`);
-        }
-        $("#icon_report_management").css("margin", "0px");
+      case "/withdrawal": {
+        setSubNo(2);
         break;
       }
-      case 4: {
-        $("#icon_chart_management").html("");
-        $("#subMenu_chart_management").slideToggle();
-        if (subChartFlag == true) {
-          setsubChartFlag(false);
-          $("#icon_chart_management").append(`
-            <svg
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-            focusable="false"
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            data-testid="ArrowDropUpIcon"
-          >
-            <path d="m7 14 5-5 5 5z"></path>
-          </svg>`);
-        } else {
-          setsubChartFlag(true);
-          $("#icon_chart_management").append(`
-            <svg
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              data-testid="ArrowDropDownIcon"
-            >
-            <path d="m7 10 5 5 5-5z"></path>
-          </svg>`);
-        }
-        $("#icon_chart_management").css("margin", "0px");
+      case "/summary_report": {
+        setSubNo(3);
         break;
       }
-      case 5: {
-        $("#icon_system_management").html("");
-        $("#subMenu_system_management").slideToggle();
-        if (subSystemFlag == true) {
-          setsubSystemFlag(false);
-          $("#icon_system_management").append(`
-            <svg
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-            focusable="false"
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            data-testid="ArrowDropUpIcon"
-          >
-            <path d="m7 14 5-5 5 5z"></path>
-          </svg>`);
-        } else {
-          setsubSystemFlag(true);
-          $("#icon_system_management").append(`
-            <svg
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              data-testid="ArrowDropDownIcon"
-            >
-            <path d="m7 10 5 5 5-5z"></path>
-          </svg>`);
-        }
-        $("#icon_system_management").css("margin", "0px");
+      case "/receive_report": {
+        setSubNo(3);
         break;
       }
-      case 6: {
-        $("#icon_record").html("");
-        $("#subMenu_record").slideToggle();
-        if (subRecordFlag == true) {
-          setsubRecordFlag(false);
-          $("#icon_record").append(`
-            <svg
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-            focusable="false"
-            aria-hidden="true"
-            viewBox="0 0 24 24"
-            data-testid="ArrowDropUpIcon"
-          >
-            <path d="m7 14 5-5 5 5z"></path>
-          </svg>`);
-        } else {
-          setsubRecordFlag(true);
-          $("#icon_record").append(`
-            <svg
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              focusable="false"
-              aria-hidden="true"
-              viewBox="0 0 24 24"
-              data-testid="ArrowDropDownIcon"
-            >
-            <path d="m7 10 5 5 5-5z"></path>
-          </svg>`);
-        }
-        $("#icon_record").css("margin", "0px");
+      case "/payment_report": {
+        setSubNo(3);
+        break;
+      }
+      case "/manually_report": {
+        setSubNo(3);
+        break;
+      }
+      case "/quota_report": {
+        setSubNo(3);
+        break;
+      }
+      case "/summary_chart": {
+        setSubNo(4);
+        break;
+      }
+      case "/channel_info": {
+        setSubNo(5);
+        break;
+      }
+      case "/login_record": {
+        setSubNo(6);
+        break;
+      }
+      case "/interface_record": {
+        setSubNo(6);
+        break;
+      }
+      case "/order_record": {
+        setSubNo(6);
         break;
       }
     }
-  };
+  });
 
   const drawer = (
     <div className="sidebar-back">
@@ -230,30 +155,53 @@ export default function ResponsiveDrawer(props) {
         <Divider sx={{ borderColor: "grey !important" }} />
         <ul style={{ padding: "0px 0px" }}>
           {sidebarData.map((item, i) => (
-            <li
-              key={i}
-              onClick={(e) => handleMainMenu(e, item.no)}
-              style={styles.mainlist.type}
-            >
-              <Box id={"sidebar_" + item.id} sx={styles.mainlist.aloneMenu}>
+            <li key={i} style={styles.mainlist.type}>
+              <Box
+                onClick={(e) => handleMainMenu(e, item.no)}
+                id={"sidebar_" + item.id}
+                sx={styles.mainlist.aloneMenu}
+              >
                 <Text sx={styles.mainlist.menuStyle}> {item.text} </Text>
-                {item.sublist.length > 0 ? (
-                  <Text sx={styles.mainlist.icon} id={"icon_" + item.id}>
-                    <ArrowDropDown />
-                  </Text>
-                ) : (
-                  ""
-                )}
+                <Text
+                  className="item-icons"
+                  sx={styles.mainlist.icon}
+                  id={"icon_" + item.no}
+                >
+                  {subno == item.no ? (
+                    <svg
+                      id={"arrowIcon_" + item.no}
+                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root arrow-icons"
+                      focusable="false"
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      data-testid="ArrowDropUpIcon"
+                    >
+                      <path d="m7 14 5-5 5 5z"></path>
+                    </svg>
+                  ) : (
+                    <svg
+                      id={"arrowIcon_" + item.no}
+                      className="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root arrow-icons"
+                      focusable="false"
+                      aria-hidden="true"
+                      viewBox="0 0 24 24"
+                      data-testid="ArrowDropDownIcon"
+                    >
+                      <path d="m7 10 5 5 5-5z"></path>
+                    </svg>
+                  )}
+                </Text>
               </Box>
               <ul
-                id={"subMenu_" + item.id}
+                id={"subMenu_" + item.no}
                 style={styles.mainlist.subListActive}
+                className="subMenu-list"
               >
                 {item.sublist.map((item, i) => (
                   <li
                     key={i}
-                    onClick={() => {
-                      router(item.router);
+                    onClick={(e) => {
+                      handleSublist(e, item.no, item.router);
                     }}
                     style={styles.mainlist.sublistType}
                   >
@@ -304,7 +252,6 @@ export default function ResponsiveDrawer(props) {
         }}
         aria-label="mailbox folders"
       >
-        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
         <Drawer
           container={container}
           variant="temporary"
@@ -400,7 +347,6 @@ const styles = {
     },
     subListActive: {
       paddingLeft: "0px",
-      display: "none",
     },
   },
 };

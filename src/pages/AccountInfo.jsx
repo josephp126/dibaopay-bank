@@ -1,9 +1,8 @@
 import { Card, CardContent, Grid, Typography, Box } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import AccountInfoCard from "../components/AccountInfoCard";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import AccountInfoTable from "../components/AccountInfoTable";
-import $ from "jquery";
 import "../css/AccountInfo.scss";
 
 const styles = {
@@ -17,15 +16,6 @@ const styles = {
 };
 
 const AccountInfo = () => {
-  useEffect(() => {
-    $(".sidebar-sublist").css({
-      "background-color": "transparent",
-      "box-shadow": "none",
-    });
-    $("#sidebar_sublist_account_info").css({
-      "background-color": "#e91e63",
-    });
-  });
   return (
     <div className="account-info">
       <Grid container padding={2} spacing={5}>

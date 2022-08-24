@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Card,
@@ -16,7 +16,6 @@ import CampaignIcon from "@mui/icons-material/Campaign";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
-import $ from "jquery";
 
 const styles = {
   main: {
@@ -51,15 +50,6 @@ const Withdrawal = () => {
   const [amount, setAmount] = useState("");
   const [password, setPassword] = useState("");
   const [card, setCard] = useState("");
-  useEffect(() => {
-    $(".sidebar-sublist").css({
-      "background-color": "transparent",
-      "box-shadow": "none",
-    });
-    $("#sidebar_sublist_withdrawl").css({
-      "background-color": "#e91e63",
-    });
-  });
   const handleAmount = (event) => {
     setAmount(event.target.value);
   };

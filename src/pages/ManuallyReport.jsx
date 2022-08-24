@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Grid,
   Card,
@@ -15,7 +15,6 @@ import CampaignIcon from "@mui/icons-material/Campaign";
 import { DateTimePicker } from "@mui/x-date-pickers/DateTimePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import $ from "jquery";
 
 const styles = {
   main: {
@@ -57,15 +56,6 @@ const ManuallyReport = () => {
   const handleEndDate = (newDate) => {
     setEndDate(newDate);
   };
-  useEffect(() => {
-    $(".sidebar-sublist").css({
-      "background-color": "transparent",
-      "box-shadow": "none",
-    });
-    $("#sidebar_sublist_manually_report").css({
-      "background-color": "#e91e63",
-    });
-  });
   const handleSelectTime = (e) => {
     let date = new Date();
     const currentDate = e.currentTarget.value;

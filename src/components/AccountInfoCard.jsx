@@ -51,7 +51,6 @@ const AccountInfoCard = (props) => {
           </Typography>
 
           <TextField
-            id="originpassword"
             label={props.origin}
             name="originpassword"
             type="password"
@@ -59,7 +58,6 @@ const AccountInfoCard = (props) => {
             sx={{ width: "100%", paddingY: 1 }}
           />
           <TextField
-            id="newpassword"
             label={props.new}
             name="newpassword"
             type="password"
@@ -67,7 +65,6 @@ const AccountInfoCard = (props) => {
             sx={{ width: "100%", paddingY: 1 }}
           />
           <TextField
-            id="retypepassword"
             label={props.retype}
             name="retypepassword"
             type="password"

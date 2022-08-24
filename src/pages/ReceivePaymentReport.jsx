@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Grid, Card, CardContent } from "@mui/material";
 
 import DashboardCard from "../components/DashboardCard";
 import SummaryReportTable from "../components/ReportTable";
-import $ from "jquery";
 import ReportCard from "../components/ReportCard";
 
 const dashboardcarddata = [
@@ -50,16 +49,6 @@ const dashboardcarddata = [
 ];
 
 const ReceivePaymentReport = () => {
-  useEffect(() => {
-    $(".sidebar-sublist").css({
-      "background-color": "transparent",
-      "box-shadow": "none",
-    });
-    $("#sidebar_sublist_receive_report").css({
-      "background-color": "#e91e63",
-    });
-  });
-
   return (
     <div className="summary-report">
       <Grid container padding={2} marginTop={4}>

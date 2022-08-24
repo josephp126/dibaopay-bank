@@ -1,9 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import DashboardCard from "../components/DashboardCard";
 import { Grid, Card, Typography, Box } from "@mui/material";
 import DashboardLineChart from "../components/Dashboardlinechart";
 import InsertChartIcon from "@mui/icons-material/InsertChart";
-import $ from "jquery";
 
 const dashboardcarddata = [
   {
@@ -54,15 +53,6 @@ const dashboardcarddata = [
 ];
 
 const Dashboard = () => {
-  useEffect(() => {
-    $(".sidebar-sublist").css({
-      "background-color": "transparent",
-      "box-shadow": "none",
-    });
-    $("#sidebar_sublist_dashboard").css({
-      "background-color": "#e91e63",
-    });
-  });
   return (
     <div className="dashboard">
       <Grid container spacing={2} padding={2}>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useLocation, useNavigate, userNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { AppBar, Typography } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import PublicIcon from "@mui/icons-material/Public";
@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Grid from "@mui/material/Grid";
+import $ from "jquery";
 
 import "../css/Navbar.scss";
 
@@ -111,57 +112,110 @@ const Navbar = () => {
   };
 
   useEffect(() => {
+    $(".sidebar-sublist").css({
+      "background-color": "transparent",
+      "box-shadow": "none",
+    });
+    $(".subMenu-list").css({ display: "none" });
     switch (pathname.pathname) {
       case "/dashboard": {
         setTitle("Dashboard");
+        $(`#sidebar_sublist_dashboard`).css({ "background-color": "#e91e63" });
+        $("#subMenu_1").css({ display: "block" });
         break;
       }
       case "/accountInfo": {
         setTitle("Account Information");
+        $(`#sidebar_sublist_account_info`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_1").css({ display: "block" });
         break;
       }
       case "/withdrawal": {
         setTitle("Withdrawal");
+        $(`#sidebar_sublist_withdrawl`).css({ "background-color": "#e91e63" });
+        $("#subMenu_2").css({ display: "block" });
         break;
       }
       case "/summary_report": {
         setTitle("Summary Report");
+        $(`#sidebar_sublist_summary_report`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_3").css({ display: "block" });
         break;
       }
       case "/receive_report": {
         setTitle("Receive Payment report");
+        $(`#sidebar_sublist_receive_report`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_3").css({ display: "block" });
         break;
       }
       case "/payment_report": {
         setTitle("Payment report");
+        $(`#sidebar_sublist_payment_report`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_3").css({ display: "block" });
         break;
       }
       case "/manually_report": {
         setTitle("Manually add points report");
+        $(`#sidebar_sublist_manually_report`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_3").css({ display: "block" });
         break;
       }
       case "/quota_report": {
         setTitle("Quota modifier report");
+        $(`#sidebar_sublist_quota_report`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_3").css({ display: "block" });
         break;
       }
       case "/summary_chart": {
         setTitle("Summary Chart");
+        $(`#sidebar_sublist_summary_chart`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_4").css({ display: "block" });
         break;
       }
-      case "/dashchannel_infoboard": {
+      case "/channel_info": {
         setTitle("Channel information");
+        $(`#sidebar_sublist_channel_info`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_5").css({ display: "block" });
         break;
       }
       case "/login_record": {
         setTitle("Login record");
+        $(`#sidebar_sublist_login_record`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_6").css({ display: "block" });
         break;
       }
       case "/interface_record": {
         setTitle("Interface record");
+        $(`#sidebar_sublist_interfact_record`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_6").css({ display: "block" });
         break;
       }
       case "/order_record": {
         setTitle("Order Callback record");
+        $(`#sidebar_sublist_order_record`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_6").css({ display: "block" });
         break;
       }
     }
