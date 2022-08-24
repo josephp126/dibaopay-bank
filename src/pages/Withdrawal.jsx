@@ -362,7 +362,6 @@ const Withdrawal = () => {
                 <Grid item lg={4} md={12}>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DateTimePicker
-                      // inputFormat="MM/dd/yyyy"
                       value={startDate}
                       onChange={handleStartDate}
                       renderInput={(params) => (
@@ -374,7 +373,6 @@ const Withdrawal = () => {
                 <Grid item lg={4} md={12}>
                   <LocalizationProvider dateAdapter={AdapterDateFns}>
                     <DateTimePicker
-                      // inputFormat="MM/dd/yyyy"
                       value={endDate}
                       onChange={handleEndDate}
                       renderInput={(params) => (
