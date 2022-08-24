@@ -9,6 +9,7 @@ import AccountInfo from "./pages/AccountInfo";
 import SummaryReport from "./pages/SummaryReport";
 import ReceivePaymentReport from "./pages/ReceivePaymentReport";
 import PaymentReport from "./pages/PaymentReport";
+import ManuallyReport from "./pages/ManuallyReport";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
@@ -26,6 +27,7 @@ root.render(
           <Route path="/summary_report" element={<SummaryReport />} />
           <Route path="/receive_report" element={<ReceivePaymentReport />} />
           <Route path="/payment_report" element={<PaymentReport />} />
+          <Route path="/manually_report" element={<ManuallyReport />} />
         </Route>
       </Routes>
     </BrowserRouter>

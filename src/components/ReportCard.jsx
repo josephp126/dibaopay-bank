@@ -548,7 +548,6 @@ const ReportCard = () => {
                 sx={{
                   border: "none",
                   width: "100%",
-                  marginTop: "16px",
                 }}
               >
                 {selectionTime.map((data, idx) => (
