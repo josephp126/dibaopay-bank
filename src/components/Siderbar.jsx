@@ -26,13 +26,13 @@ export default function ResponsiveDrawer(props) {
   };
 
   const handleSublist = (e, no, link) => {
+    router(link);
     e.preventDefault();
-    console.log($(".MuiSvgIcon-root")[0].dataset);
-    for (let i = 0; i < $(".MuiSvgIcon-root").length; i++) {
+    for (let i = 0; i < $(".arrow-icons").length; i++) {
       $(`#icon_${i + 1}`).html("");
       $(`#icon_${i + 1}`).append(`
         <svg
-        id=arrowIcon_${no}
+        id=arrowIcon_${i + 1}
         class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root arrow-icons"
         focusable="false"
         aria-hidden="true"
@@ -47,7 +47,7 @@ export default function ResponsiveDrawer(props) {
     $(`#icon_${no}`).append(`
       <svg
         id=arrowIcon_${no}
-        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root arrow-icons"
         focusable="false"
         aria-hidden="true"
         viewBox="0 0 24 24"
@@ -55,15 +55,16 @@ export default function ResponsiveDrawer(props) {
       >
         <path d="m7 14 5-5 5 5z"></path>
       </svg>`);
-    router(link);
   };
 
   const handleMainMenu = (e, no) => {
     e.preventDefault();
+    console.log(no);
     $(`#icon_${no}`).css("margin", "0px");
     $(`#subMenu_${no}`).slideToggle();
+    console.log($(`#arrowIcon_${no}`)[0].dataset.testid);
     if ($(`#arrowIcon_${no}`)[0].dataset.testid == "ArrowDropDownIcon") {
-      $(`#icon_${no}`).html(" ");
+      $(`#icon_${no}`).html("");
       $(`#icon_${no}`).append(`
       <svg
         id=arrowIcon_${no}
