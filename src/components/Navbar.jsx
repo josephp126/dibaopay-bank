@@ -223,7 +223,7 @@ const Navbar = () => {
         $(`#sidebar_sublist_notification_data`).css({
           "background-color": "#e91e63",
         });
-        $("#subMenu_6").css({ display: "block" });
+        $("#subMenu_7").css({ display: "block" });
         break;
       }
     }
