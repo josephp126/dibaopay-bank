@@ -146,6 +146,10 @@ export default function ResponsiveDrawer(props) {
         setSubNo(6);
         break;
       }
+      case "notification_data": {
+        setSubNo(7);
+        break;
+      }
     }
   });
 
