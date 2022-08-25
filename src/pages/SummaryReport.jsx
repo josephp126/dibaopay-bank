@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Card, CardContent } from "@mui/material";
 
 import DashboardCard from "../components/DashboardCard";
-import SummaryReportTable from "../components/ReportTable";
+import ReportTable from "../components/ReportTable";
 import ReportCard from "../components/ReportCard";
 
 const dashboardcarddata = [
@@ -93,7 +93,7 @@ const SummaryReport = () => {
           <Grid item xs={12}>
             <Card sx={{ width: "100%" }}>
               <CardContent>
-                <SummaryReportTable />
+                <ReportTable />
               </CardContent>
             </Card>
           </Grid>

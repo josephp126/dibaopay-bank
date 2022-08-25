@@ -10,6 +10,8 @@ import SummaryReport from "./pages/SummaryReport";
 import ReceivePaymentReport from "./pages/ReceivePaymentReport";
 import PaymentReport from "./pages/PaymentReport";
 import ManuallyReport from "./pages/ManuallyReport";
+import QuotaModifierReport from "./pages/QuotaModifierReport";
+import SummaryChart from "./pages/SummaryChart";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 
@@ -28,6 +30,8 @@ root.render(
           <Route path="/receive_report" element={<ReceivePaymentReport />} />
           <Route path="/payment_report" element={<PaymentReport />} />
           <Route path="/manually_report" element={<ManuallyReport />} />
+          <Route path="/quota_report" element={<QuotaModifierReport />} />
+          <Route path="/summary_chart" element={<SummaryChart />} />
         </Route>
       </Routes>
     </BrowserRouter>
