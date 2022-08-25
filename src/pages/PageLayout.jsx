@@ -22,21 +22,21 @@ const PageLayout = () => {
     }
   };
 
-  const verifyToken = async () => {
-    const verify = await axios.post(`${env.API_URL}/users/verifytoken`, {
-      token: localStorage.getItem("dibao_login"),
-    });
-    if (verify.data !== "success") {
-      navigate("/");
-    }
-  };
+  // const verifyToken = async () => {
+  //   const verify = await axios.post(`${env.API_URL}/users/verifytoken`, {
+  //     token: localStorage.getItem("dibao_login"),
+  //   });
+  //   if (verify.data !== "success") {
+  //     navigate("/");
+  //   }
+  // };
 
-  useEffect(() => {
-    verifyToken();
-    if (!localStorage.getItem("dibao_login")) {
-      navigate("/");
-    }
-  });
+  // useEffect(() => {
+  //   verifyToken();
+  //   if (!localStorage.getItem("dibao_login")) {
+  //     navigate("/");
+  //   }
+  // });
   return (
     <IdleTimerProvider
       timeout={1800000}
