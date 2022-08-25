@@ -27,20 +27,17 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleOpen = async () => {
-    // const user = await axios.post(`${env.API_URL}/users/login`, {
-    //   data: { name: account, password: password },
-    // });
+    const user = await axios.post(`${env.API_URL}/users/login`, {
+      data: { name: account, password: password },
+    });
 
-    // if (user.data !== "invalid user") {
-    //   localStorage.setItem("dibao_login", user.data.token);
-    //   localStorage.setItem("dibao_username", user.data.name);
-    //   localStorage.setItem("dibao_userId", user.data.id);
-    //   navigate("/dashboard");
-    // }
-  
-    if (account == "test" && password == "test") {
-      navigate('/dashboard');
+    if (user.data !== "invalid user") {
+      localStorage.setItem("dibao_login", user.data.token);
+      localStorage.setItem("dibao_username", user.data.name);
+      localStorage.setItem("dibao_userId", user.data.id);
+      navigate("/dashboard");
     }
+
     if (account === "") {
       setValue("Account is not entered");
     } else if (password === "") {
