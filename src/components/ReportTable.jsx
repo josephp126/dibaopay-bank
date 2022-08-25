@@ -78,7 +78,7 @@ const columns = [
   },
 ];
 
-export default function SummaryReportTable() {
+export default function ReportTable() {
   const [page, setPage] = useState(0);
   const [rows, setRows] = useState([]);
   const [rowsPerPage, setRowsPerPage] = useState(20);

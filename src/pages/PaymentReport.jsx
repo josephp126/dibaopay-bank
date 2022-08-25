@@ -2,7 +2,7 @@ import React from "react";
 import { Grid, Card, CardContent } from "@mui/material";
 
 import DashboardCard from "../components/DashboardCard";
-import SummaryReportTable from "../components/ReportTable";
+import ReportTable from "../components/ReportTable";
 import ReportCard from "../components/ReportCard";
 
 const dashboardcarddata = [
@@ -51,7 +51,6 @@ const dashboardcarddata = [
 
 const PaymentReport = () => {
   return (
-    <div className="summary-report">
       <Grid container padding={2} marginTop={4}>
         <Grid item sm={12}>
           <ReportCard />
@@ -72,13 +71,12 @@ const PaymentReport = () => {
           <Grid item sm={12}>
             <Card sx={{ width: "100%" }}>
               <CardContent>
-                <SummaryReportTable />
+                <ReportTable />
               </CardContent>
             </Card>
           </Grid>
         </Grid>
       </Grid>
-    </div>
   );
 };
 
