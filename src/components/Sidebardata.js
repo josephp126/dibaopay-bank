@@ -125,4 +125,18 @@ export default [
       },
     ],
   },
+  {
+    text: "Notification",
+    router: "",
+    no: 7,
+    id: "notification",
+    sublist: [
+      {
+        text: "Notification Data",
+        router: "/notification_data",
+        id: "notification_data",
+        no: 7,
+      },
+    ],
+  },
 ];
