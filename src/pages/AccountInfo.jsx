@@ -26,6 +26,7 @@ const AccountInfo = () => {
             origin="Enter original password"
             new="New password"
             retype="Retype new password"
+            index="login"
           />
         </Grid>
         <Grid item md={6} sm={12}>
@@ -34,6 +35,7 @@ const AccountInfo = () => {
             origin="Enter original settlement password"
             new="New settlement password"
             retype="Retype new settlement password"
+            index="withdrawl"
           />
         </Grid>
       </Grid>

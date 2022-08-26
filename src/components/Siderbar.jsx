@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { flushSync } from "react-dom";
 import { useNavigate, useLocation } from "react-router-dom";
 import Box from "@mui/material/Box";
 import Text from "@mui/material/ListItemText";
@@ -22,12 +23,115 @@ export default function ResponsiveDrawer(props) {
   const [subno, setSubNo] = useState(false);
 
   const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
+    flushSync(() => {
+      setMobileOpen(!mobileOpen);
+    });
+    $(".sidebar-sublist").css({
+      "background-color": "transparent",
+      "box-shadow": "none",
+    });
+    $(".subMenu-list").css({ display: "none" });
+    switch (pathname) {
+      case "/dashboard": {
+        $(`#sidebar_sublist_dashboard`).css({ "background-color": "#e91e63" });
+        $("#subMenu_1").css({ display: "block" });
+        break;
+      }
+      case "/accountInfo": {
+        $(`#sidebar_sublist_account_info`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_1").css({ display: "block" });
+        break;
+      }
+      case "/withdrawal": {
+        $(`#sidebar_sublist_withdrawl`).css({ "background-color": "#e91e63" });
+        $("#subMenu_2").css({ display: "block" });
+        break;
+      }
+      case "/summary_report": {
+        $(`#sidebar_sublist_summary_report`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_3").css({ display: "block" });
+        break;
+      }
+      case "/receive_report": {
+        $(`#sidebar_sublist_receive_report`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_3").css({ display: "block" });
+        break;
+      }
+      case "/payment_report": {
+        $(`#sidebar_sublist_payment_report`).css({
+          "background-color": "#e91e63",
+        });
+        break;
+      }
+      case "/manually_report": {
+        $(`#sidebar_sublist_manually_report`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_3").css({ display: "block" });
+        break;
+      }
+      case "/quota_report": {
+        $(`#sidebar_sublist_quota_report`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_3").css({ display: "block" });
+        break;
+      }
+      case "/summary_chart": {
+        $(`#sidebar_sublist_summary_chart`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_4").css({ display: "block" });
+        break;
+      }
+      case "/channel_info": {
+        $(`#sidebar_sublist_channel_info`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_5").css({ display: "block" });
+        break;
+      }
+      case "/login_record": {
+        $(`#sidebar_sublist_login_record`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_6").css({ display: "block" });
+        break;
+      }
+      case "/interface_record": {
+        $(`#sidebar_sublist_interfact_record`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_6").css({ display: "block" });
+        break;
+      }
+      case "/order_record": {
+        $(`#sidebar_sublist_order_record`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_6").css({ display: "block" });
+        break;
+      }
+      case "/notification_data": {
+        $(`#sidebar_sublist_notification_data`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_7").css({ display: "block" });
+        break;
+      }
+    }
   };
 
   const handleSublist = (e, no, link) => {
     router(link);
     e.preventDefault();
+    if (mobileOpen) handleDrawerToggle(false);
     for (let i = 0; i < $(".arrow-icons").length; i++) {
       $(`#icon_${i + 1}`).html("");
       $(`#icon_${i + 1}`).append(`
@@ -58,11 +162,9 @@ export default function ResponsiveDrawer(props) {
   };
 
   const handleMainMenu = (e, no) => {
-    e.preventDefault();
-    console.log(no);
+    console.log($(`#subMenu_${no}`));
     $(`#icon_${no}`).css("margin", "0px");
     $(`#subMenu_${no}`).slideToggle();
-    console.log($(`#arrowIcon_${no}`)[0].dataset.testid);
     if ($(`#arrowIcon_${no}`)[0].dataset.testid == "ArrowDropDownIcon") {
       $(`#icon_${no}`).html("");
       $(`#icon_${no}`).append(`
@@ -242,7 +344,7 @@ export default function ResponsiveDrawer(props) {
           mr: 2,
           display: { md: "none" },
           position: "fixed",
-          top: "20px",
+          top: "40px",
           right: "5px",
           zIndex: "100",
           color: "black",
@@ -257,39 +359,42 @@ export default function ResponsiveDrawer(props) {
         }}
         aria-label="mailbox folders"
       >
-        <Drawer
-          container={container}
-          variant="temporary"
-          open={mobileOpen}
-          onClose={handleDrawerToggle}
-          ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
-          }}
-          sx={{
-            display: { xs: "block", md: "none" },
-            backgroundColor: "transparent",
-            color: "white",
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-        >
-          {drawer}
-        </Drawer>
-        <Drawer
-          variant="permanent"
-          sx={{
-            display: { xs: "none", md: "block" },
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: drawerWidth,
-            },
-          }}
-          open
-        >
-          {drawer}
-        </Drawer>
+        {mobileOpen ? (
+          <Drawer
+            container={container}
+            variant="temporary"
+            open={mobileOpen}
+            onClose={handleDrawerToggle}
+            ModalProps={{
+              keepMounted: true, // Better open performance on mobile.
+            }}
+            sx={{
+              display: { xs: "block", md: "none" },
+              backgroundColor: "transparent",
+              color: "white",
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
+          >
+            {drawer}
+          </Drawer>
+        ) : (
+          <Drawer
+            variant="permanent"
+            sx={{
+              display: { xs: "none", md: "block" },
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: drawerWidth,
+              },
+            }}
+            open
+          >
+            {drawer}
+          </Drawer>
+        )}
       </Box>
     </Box>
   );

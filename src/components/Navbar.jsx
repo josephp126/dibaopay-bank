@@ -119,6 +119,7 @@ const Navbar = () => {
     $(".subMenu-list").css({ display: "none" });
     switch (pathname.pathname) {
       case "/dashboard": {
+        console.log("aaa");
         setTitle("Dashboard");
         $(`#sidebar_sublist_dashboard`).css({ "background-color": "#e91e63" });
         $("#subMenu_1").css({ display: "block" });
