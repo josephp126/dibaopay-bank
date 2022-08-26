@@ -13,7 +13,7 @@ import ManuallyReport from "./pages/ManuallyReport";
 import QuotaModifierReport from "./pages/QuotaModifierReport";
 import SummaryChart from "./pages/SummaryChart";
 import NotificationData from "./pages/NotificationData";
-
+import ChannelInformation from "./pages/ChannelInformation";
 import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
@@ -36,6 +36,7 @@ root.render(
           <Route path="/quota_report" element={<QuotaModifierReport />} />
           <Route path="/summary_chart" element={<SummaryChart />} />
           <Route path="/notification_data" element={<NotificationData />} />
+          <Route path="/channel_info" element={<ChannelInformation />} />
         </Route>
       </Routes>
     </BrowserRouter>
