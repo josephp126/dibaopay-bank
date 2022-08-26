@@ -12,7 +12,13 @@ import PaymentReport from "./pages/PaymentReport";
 import ManuallyReport from "./pages/ManuallyReport";
 import QuotaModifierReport from "./pages/QuotaModifierReport";
 import SummaryChart from "./pages/SummaryChart";
+<<<<<<< HEAD
+=======
+import NotificationData from "./pages/NotificationData";
+
+>>>>>>> master
 import reportWebVitals from "./reportWebVitals";
+
 import "./index.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
@@ -32,6 +38,7 @@ root.render(
           <Route path="/manually_report" element={<ManuallyReport />} />
           <Route path="/quota_report" element={<QuotaModifierReport />} />
           <Route path="/summary_chart" element={<SummaryChart />} />
+          <Route path="/notification_data" element={<NotificationData />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -218,6 +218,14 @@ const Navbar = () => {
         $("#subMenu_6").css({ display: "block" });
         break;
       }
+      case "/notification_data": {
+        setTitle("Notification Data");
+        $(`#sidebar_sublist_notification_data`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_7").css({ display: "block" });
+        break;
+      }
     }
   });
 
