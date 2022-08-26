@@ -12,11 +12,7 @@ import PaymentReport from "./pages/PaymentReport";
 import ManuallyReport from "./pages/ManuallyReport";
 import QuotaModifierReport from "./pages/QuotaModifierReport";
 import SummaryChart from "./pages/SummaryChart";
-<<<<<<< HEAD
-=======
 import NotificationData from "./pages/NotificationData";
-
->>>>>>> master
 import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
