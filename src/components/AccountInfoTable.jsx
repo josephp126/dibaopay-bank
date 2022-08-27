@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Table,
+  Paper,
   TableHead,
   TableRow,
   TableCell,
   TableBody,
+  TablePagination,
+  TableContainer,
   FormControl,
   NativeSelect,
   TextField,
@@ -200,9 +203,12 @@ const AccountInfoTable = (props) => {
   const [nickName, setNickName] = useState("");
   const [account, setAccount] = useState("");
   const [accountName, setAccountName] = useState("");
-  const [infoDatas, setInfoDatas] = useState([]);
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
+  const [page, setPage] = useState(0);
+  const [rows, setRows] = useState([]);
+  const [rowsPerPage, setRowsPerPage] = useState(20);
+  const tableRef = useRef(null);
 
   useEffect(() => {
     fetchAccountInfos();
@@ -212,11 +218,20 @@ const AccountInfoTable = (props) => {
 
   const handleClose = () => setOpen(false);
 
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   const fetchAccountInfos = async () => {
     const accountDatas = await axios.get(
       `${env.API_URL}/accountInfo/datas/${localStorage.getItem("dibao_userId")}`
     );
-    setInfoDatas(accountDatas.data);
+    setRows(accountDatas.data);
   };
 
   const handleCreateAccountData = (e) => {
@@ -264,97 +279,110 @@ const AccountInfoTable = (props) => {
 
   return (
     <div className="withdrawal-table">
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">Account number</TableCell>
-            <TableCell align="center">Transaction Type</TableCell>
-            <TableCell align="center">Nick Name</TableCell>
-            <TableCell align="center">Account</TableCell>
-            <TableCell align="center">Account Name</TableCell>
-            <TableCell align="center">Creation time</TableCell>
-            <TableCell align="center">Edit</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-            <TableCell align="center">Create</TableCell>
-            <TableCell align="center">
-              <FormControl fullWidth>
-                <NativeSelect
-                  //   defaultValue={"NONE"}
-                  value={bank}
-                  onChange={handleBank}
-                >
-                  {bankData.map((data, index) => (
-                    <option key={index} value={data.value}>
-                      {data.title}
-                    </option>
-                  ))}
-                </NativeSelect>
-              </FormControl>
-            </TableCell>
-            <TableCell align="center">
-              <TextField
-                hiddenLabel
-                id="nick-name"
-                variant="filled"
-                size="small"
-                placeholder="Length is 20 code"
-                onChange={handleNickName}
-              />
-            </TableCell>
-            <TableCell align="center">
-              <TextField
-                hiddenLabel
-                id="account"
-                variant="filled"
-                size="small"
-                placeholder="Length is 40 code"
-                onChange={handleAccount}
-              />
-            </TableCell>
-            <TableCell align="center">
-              <TextField
-                hiddenLabel
-                id="account-name"
-                variant="filled"
-                size="small"
-                placeholder="Length is 40 code"
-                onChange={handleAccountName}
-              />
-            </TableCell>
-            <TableCell align="center"></TableCell>
-            <TableCell align="center">
-              <Button
-                color="primary"
-                startIcon={<AddIcon />}
-                onClick={(e) => handleCreateAccountData(e)}
-              >
-                Add
-              </Button>
-            </TableCell>
-          </TableRow>
-          {infoDatas.map((item, i) => (
-            <TableRow key={i}>
-              <TableCell align="center">{item.id}</TableCell>
-              <TableCell align="center">{item.type}</TableCell>
-              <TableCell align="center">{item.nickName}</TableCell>
-              <TableCell align="center">{item.account}</TableCell>
-              <TableCell align="center">{item.accountName}</TableCell>
-              <TableCell align="center">{item.created_at}</TableCell>
-              <TableCell align="center">
-                <Button
-                  sx={styles.closeBtn}
-                  onClick={(e) => handleDeleteAccountData(e, item.id)}
-                >
-                  <CloseIcon sx={styles.closeIcon} />
-                </Button>
-              </TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+      <Paper sx={{ overflow: "hidden" }}>
+        <TableContainer ref={tableRef}>
+          <Table stickyHeader aria-label="sticky table">
+            <TableHead>
+              <TableRow>
+                <TableCell align="center">Account number</TableCell>
+                <TableCell align="center">Transaction Type</TableCell>
+                <TableCell align="center">Nick Name</TableCell>
+                <TableCell align="center">Account</TableCell>
+                <TableCell align="center">Account Name</TableCell>
+                <TableCell align="center">Creation time</TableCell>
+                <TableCell align="center">Edit</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell align="center">Create</TableCell>
+                <TableCell align="center">
+                  <FormControl fullWidth>
+                    <NativeSelect
+                      //   defaultValue={"NONE"}
+                      value={bank}
+                      onChange={handleBank}
+                    >
+                      {bankData.map((data, index) => (
+                        <option key={index} value={data.value}>
+                          {data.title}
+                        </option>
+                      ))}
+                    </NativeSelect>
+                  </FormControl>
+                </TableCell>
+                <TableCell align="center">
+                  <TextField
+                    hiddenLabel
+                    id="nick-name"
+                    variant="filled"
+                    size="small"
+                    placeholder="Length is 20 code"
+                    onChange={handleNickName}
+                  />
+                </TableCell>
+                <TableCell align="center">
+                  <TextField
+                    hiddenLabel
+                    id="account"
+                    variant="filled"
+                    size="small"
+                    placeholder="Length is 40 code"
+                    onChange={handleAccount}
+                  />
+                </TableCell>
+                <TableCell align="center">
+                  <TextField
+                    hiddenLabel
+                    id="account-name"
+                    variant="filled"
+                    size="small"
+                    placeholder="Length is 40 code"
+                    onChange={handleAccountName}
+                  />
+                </TableCell>
+                <TableCell align="center"></TableCell>
+                <TableCell align="center">
+                  <Button
+                    color="primary"
+                    startIcon={<AddIcon />}
+                    onClick={(e) => handleCreateAccountData(e)}
+                  >
+                    Add
+                  </Button>
+                </TableCell>
+              </TableRow>
+              {rows.map((item, i) => (
+                <TableRow key={i}>
+                  <TableCell align="center">{item.id}</TableCell>
+                  <TableCell align="center">{item.type}</TableCell>
+                  <TableCell align="center">{item.nickName}</TableCell>
+                  <TableCell align="center">{item.account}</TableCell>
+                  <TableCell align="center">{item.accountName}</TableCell>
+                  <TableCell align="center">{item.created_at}</TableCell>
+                  <TableCell align="center">
+                    <Button
+                      sx={styles.closeBtn}
+                      onClick={(e) => handleDeleteAccountData(e, item.id)}
+                    >
+                      <CloseIcon sx={styles.closeIcon} />
+                    </Button>
+                  </TableCell>
+                </TableRow>
+              ))}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <TablePagination
+          rowsPerPageOptions={[10, 20, 50, 100, 200]}
+          component="div"
+          count={rows.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+        />
+      </Paper>
       <ErrorModal open={open} handleClose={handleClose} value={value} />
     </div>
   );

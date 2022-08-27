@@ -37,6 +37,7 @@ const SignIn = () => {
       localStorage.setItem("dibao_userId", user.data.id);
       navigate("/dashboard");
     }
+    console.log("aa");
 
     if (account === "") {
       setValue("Account is not entered");
@@ -45,7 +46,7 @@ const SignIn = () => {
     } else {
       setValue("Incorrect Account or Password");
     }
-    console.log('value');
+    console.log("value");
     handleModalOpen();
   };
 
@@ -56,7 +57,7 @@ const SignIn = () => {
   return (
     <div className="signin">
       <Container maxWidth="xs" sx={{ paddingTop: "23vh" }}>
-        <Box className="pay-title">DiBao Pay Control</Box>
+        <Box className="pay-title">RR Pay Control</Box>
         <Box
           sx={{
             bgcolor: "white",
@@ -74,49 +75,54 @@ const SignIn = () => {
             Please login first
           </Typography>
           <form onSubmit={handleOpen}>
-          <Box sx={{ display: "flex", alignItems: "flex-end" }}>
-            <PersonIcon
-              sx={{ color: "action.active", mr: 1, my: 0.5, ml: 3 }}
-            />
-            <TextField
-              id="account"
-              label="account"
-              name="account"
-              defaultValue={account}
-              onChange={(event) => {
-                setAccount(event.target.value);
+            <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+              <PersonIcon
+                sx={{ color: "action.active", mr: 1, my: 0.5, ml: 3 }}
+              />
+              <TextField
+                id="account"
+                label="account"
+                name="account"
+                defaultValue={account}
+                onChange={(event) => {
+                  setAccount(event.target.value);
+                }}
+                variant="standard"
+                sx={{ width: "75%" }}
+              />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "flex-end",
+                marginTop: "30px",
               }}
-              variant="standard"
-              sx={{ width: "75%" }}
-            />
-          </Box>
-          <Box
-            sx={{ display: "flex", alignItems: "flex-end", marginTop: "30px" }}
-          >
-            <LockIcon sx={{ color: "action.active", mr: 1, my: 0.5, ml: 3 }} />
-            <TextField
-              id="password"
-              label="password"
-              name="password"
-              type="password"
-              defaultValue={password}
-              onChange={(event) => {
-                setPassword(event.target.value);
-              }}
-              autoComplete="current-password"
-              variant="standard"
-              sx={{ width: "75%" }}
-            />
-          </Box>
-          <Button
-            variant="text"
-            sx={{ marginTop: "38px", paddingX: "80px" }}
-            type="submit"
-          >
-            Login
-          </Button>
+            >
+              <LockIcon
+                sx={{ color: "action.active", mr: 1, my: 0.5, ml: 3 }}
+              />
+              <TextField
+                id="password"
+                label="password"
+                name="password"
+                type="password"
+                defaultValue={password}
+                onChange={(event) => {
+                  setPassword(event.target.value);
+                }}
+                autoComplete="current-password"
+                variant="standard"
+                sx={{ width: "75%" }}
+              />
+            </Box>
+            <Button
+              variant="text"
+              sx={{ marginTop: "38px", paddingX: "80px" }}
+              onClick={handleOpen}
+            >
+              Login
+            </Button>
           </form>
-          
         </Box>
         <ErrorModal open={open} handleClose={handleClose} value={value} />
       </Container>
