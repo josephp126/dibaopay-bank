@@ -26,7 +26,8 @@ const SignIn = () => {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
 
-  const handleOpen = async () => {
+  const handleOpen = async (e) => {
+    e.preventDefault();
     const user = await axios.post(`${env.API_URL}/users/login`, {
       data: { name: account, password: password },
     });
@@ -74,7 +75,7 @@ const SignIn = () => {
           >
             Please login first
           </Typography>
-          <form onSubmit={handleOpen}>
+          <form onSubmit={(e) => handleOpen(e)}>
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <PersonIcon
                 sx={{ color: "action.active", mr: 1, my: 0.5, ml: 3 }}
@@ -117,8 +118,8 @@ const SignIn = () => {
             </Box>
             <Button
               variant="text"
+              type="submit"
               sx={{ marginTop: "38px", paddingX: "80px" }}
-              onClick={handleOpen}
             >
               Login
             </Button>
