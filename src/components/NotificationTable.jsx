@@ -40,17 +40,31 @@ const AccountInfoTable = (props) => {
       <Table>
         <TableHead>
           <TableRow>
-            <TableCell align="center">No</TableCell>
-            <TableCell align="center">Device</TableCell>
-            <TableCell align="center">Message</TableCell>
+            <TableCell align="center">transactionId</TableCell>
+            <TableCell align="center">arrangementId</TableCell>
+            <TableCell align="center">reference</TableCell>
+            <TableCell align="center">description</TableCell>
+            <TableCell align="center">bookingDate</TableCell>
+            <TableCell align="center">valueDate</TableCell>
+            <TableCell align="center">amount</TableCell>
+            <TableCell align="center">currency</TableCell>
+            <TableCell align="center">creditDebitIndicator</TableCell>
+            <TableCell align="center">runningBalance</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
           {infoDatas.map((item, i) => (
             <TableRow key={i}>
-              <TableCell align="center">{item.id}</TableCell>
-              <TableCell align="center">{item.device_name}</TableCell>
-              <TableCell align="center">{item.message}</TableCell>
+              <TableCell align="center">{item.transactionId}</TableCell>
+              <TableCell align="center">{item.arrangementId}</TableCell>
+              <TableCell align="center">{item.reference}</TableCell>
+              <TableCell align="center">{item.description}</TableCell>
+              <TableCell align="center">{item.bookingDate}</TableCell>
+              <TableCell align="center">{item.valueDate}</TableCell>
+              <TableCell align="center">{item.amount}</TableCell>
+              <TableCell align="center">{item.currency}</TableCell>
+              <TableCell align="center">{item.creditDebitIndicator}</TableCell>
+              <TableCell align="center">{item.runningBalance}</TableCell>
               <TableCell align="center">
                 <Button
                   sx={styles.closeBtn}

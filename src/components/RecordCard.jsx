@@ -42,12 +42,17 @@ const statusData = [
   { value: "relogin", title: "ReLogin" },
   { value: "falseip", title: "False IP" },
 ];
-const RecordCard = () => {
+const RecordCard = (props) => {
   const [startDate, setStartDate] = useState(new Date());
   const [endDate, setEndDate] = useState(new Date());
   const [account, setAccount] = useState("");
   const [memberID, setMemberID] = useState("");
   const [status, setStatus] = useState("");
+  const [interStatus, setInterStatus] = useState("");
+
+  const handleInterStatus = (e) => {
+    setInterStatus(e.target.value);
+  }
   const handleStatus = (e) => {
     setStatus(e.target.value);
   };
@@ -203,7 +208,7 @@ const RecordCard = () => {
             />
           </Grid>
           <Grid item lg={2} md={4} sm={6} xs={12}>
-            <FormControl fullWidth>
+            {props.flag == 'login' ? <FormControl fullWidth>
               status
               <NativeSelect id="status" value={status} onChange={handleStatus}>
                 {statusData.map((data, index) => (
@@ -212,7 +217,15 @@ const RecordCard = () => {
                   </option>
                 ))}
               </NativeSelect>
-            </FormControl>
+            </FormControl> : <TextField
+              variant="standard"
+              label="status"
+              id="interStatus"
+              value={interStatus}
+              sx={{ width: "100%" }}
+              onChange={handleInterStatus}
+            />}
+            
           </Grid>
           <Grid item lg={2} md={4} sm={6} xs={12}>
             <FormControl fullWidth>
