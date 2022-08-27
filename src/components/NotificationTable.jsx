@@ -85,14 +85,6 @@ const AccountInfoTable = (props) => {
                     {item.creditDebitIndicator}
                   </TableCell>
                   <TableCell align="center">{item.runningBalance}</TableCell>
-                  <TableCell align="center">
-                    <Button
-                      sx={styles.closeBtn}
-                      onClick={(e) => handleDeleteAccountData(e, item.id)}
-                    >
-                      <CloseIcon sx={styles.closeIcon} />
-                    </Button>
-                  </TableCell>
                 </TableRow>
               ))}
           </TableBody>
