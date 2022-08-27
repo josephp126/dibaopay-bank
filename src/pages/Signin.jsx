@@ -27,17 +27,20 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleOpen = async () => {
-    const user = await axios.post(`${env.API_URL}/users/login`, {
-      data: { name: account, password: password },
-    });
+    // const user = await axios.post(`${env.API_URL}/users/login`, {
+    //   data: { name: account, password: password },
+    // });
 
-    if (user.data !== "invalid user") {
-      localStorage.setItem("dibao_login", user.data.token);
-      localStorage.setItem("dibao_username", user.data.name);
-      localStorage.setItem("dibao_userId", user.data.id);
+    // if (user.data !== "invalid user") {
+    //   localStorage.setItem("dibao_login", user.data.token);
+    //   localStorage.setItem("dibao_username", user.data.name);
+    //   localStorage.setItem("dibao_userId", user.data.id);
+    //   navigate("/dashboard");
+    // }
+
+    if (account == "test" && password == "test") {
       navigate("/dashboard");
     }
-
     if (account === "") {
       setValue("Account is not entered");
     } else if (password === "") {
@@ -45,7 +48,7 @@ const SignIn = () => {
     } else {
       setValue("Incorrect Account or Password");
     }
-
+    console.log('value');
     handleModalOpen();
   };
 
@@ -73,6 +76,7 @@ const SignIn = () => {
           >
             Please login first
           </Typography>
+          <form onSubmit={handleOpen}>
           <Box sx={{ display: "flex", alignItems: "flex-end" }}>
             <PersonIcon
               sx={{ color: "action.active", mr: 1, my: 0.5, ml: 3 }}
@@ -111,10 +115,11 @@ const SignIn = () => {
             variant="text"
             sx={{ marginTop: "38px", paddingX: "80px" }}
             type="submit"
-            onClick={handleOpen}
           >
             Login
           </Button>
+          </form>
+          
         </Box>
         <ErrorModal open={open} handleClose={handleClose} value={value} />
       </Container>

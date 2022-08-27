@@ -14,6 +14,7 @@ import QuotaModifierReport from "./pages/QuotaModifierReport";
 import SummaryChart from "./pages/SummaryChart";
 import NotificationData from "./pages/NotificationData";
 import ChannelInformation from "./pages/ChannelInformation";
+import LoginRecord from "./pages/LoginRecord";
 import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
@@ -37,6 +38,7 @@ root.render(
           <Route path="/summary_chart" element={<SummaryChart />} />
           <Route path="/notification_data" element={<NotificationData />} />
           <Route path="/channel_info" element={<ChannelInformation />} />
+          <Route path="/login_record" element={<LoginRecord />} />
         </Route>
       </Routes>
     </BrowserRouter>
