@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
   Table,
   TableHead,
@@ -6,6 +6,9 @@ import {
   TableCell,
   TableBody,
   Button,
+  TableContainer,
+  TablePagination,
+  Paper,
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
@@ -13,9 +16,12 @@ import env from "react-dotenv";
 import ErrorModal from "./ErrorModal";
 
 const AccountInfoTable = (props) => {
-  const [infoDatas, setInfoDatas] = useState([]);
   const [value, setValue] = useState("");
   const [open, setOpen] = useState(false);
+  const [page, setPage] = useState(0);
+  const [rows, setRows] = useState([]);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const tableRef = useRef(null);
 
   useEffect(() => {
     fetchAccountInfos();
@@ -27,7 +33,7 @@ const AccountInfoTable = (props) => {
 
   const fetchAccountInfos = async () => {
     const accountDatas = await axios.get(`${env.API_URL}/bankInfo/datas`);
-    setInfoDatas(accountDatas.data);
+    setRows(accountDatas.data);
   };
 
   const handleDeleteAccountData = (e, idx) => {
@@ -35,50 +41,66 @@ const AccountInfoTable = (props) => {
     axios.delete(`${env.API_URL}/bankInfo/delete/${idx}`).then((data) => {});
   };
 
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(+event.target.value);
+    setPage(0);
+  };
+
   return (
-    <div className="withdrawal-table">
-      <Table>
-        <TableHead>
-          <TableRow>
-            <TableCell align="center">transactionId</TableCell>
-            <TableCell align="center">arrangementId</TableCell>
-            <TableCell align="center">reference</TableCell>
-            <TableCell align="center">description</TableCell>
-            <TableCell align="center">bookingDate</TableCell>
-            <TableCell align="center">valueDate</TableCell>
-            <TableCell align="center">amount</TableCell>
-            <TableCell align="center">currency</TableCell>
-            <TableCell align="center">creditDebitIndicator</TableCell>
-            <TableCell align="center">runningBalance</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {infoDatas.map((item, i) => (
-            <TableRow key={i}>
-              <TableCell align="center">{item.transactionId}</TableCell>
-              <TableCell align="center">{item.arrangementId}</TableCell>
-              <TableCell align="center">{item.reference}</TableCell>
-              <TableCell align="center">{item.description}</TableCell>
-              <TableCell align="center">{item.bookingDate}</TableCell>
-              <TableCell align="center">{item.valueDate}</TableCell>
-              <TableCell align="center">{item.amount}</TableCell>
-              <TableCell align="center">{item.currency}</TableCell>
-              <TableCell align="center">{item.creditDebitIndicator}</TableCell>
-              <TableCell align="center">{item.runningBalance}</TableCell>
-              <TableCell align="center">
-                <Button
-                  sx={styles.closeBtn}
-                  onClick={(e) => handleDeleteAccountData(e, item.id)}
-                >
-                  <CloseIcon sx={styles.closeIcon} />
-                </Button>
-              </TableCell>
+    <Paper sx={{ overflow: "hidden" }}>
+      <TableContainer ref={tableRef}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell align="center">transactionId</TableCell>
+              <TableCell align="center">arrangementId</TableCell>
+              <TableCell align="center">reference</TableCell>
+              <TableCell align="center">description</TableCell>
+              <TableCell align="center">bookingDate</TableCell>
+              <TableCell align="center">valueDate</TableCell>
+              <TableCell align="center">amount</TableCell>
+              <TableCell align="center">currency</TableCell>
+              <TableCell align="center">creditDebitIndicator</TableCell>
+              <TableCell align="center">runningBalance</TableCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+          </TableHead>
+          <TableBody>
+            {rows
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map((item, i) => (
+                <TableRow key={i}>
+                  <TableCell align="center">{item.transactionId}</TableCell>
+                  <TableCell align="center">{item.arrangementId}</TableCell>
+                  <TableCell align="center">{item.reference}</TableCell>
+                  <TableCell align="center">{item.description}</TableCell>
+                  <TableCell align="center">{item.bookingDate}</TableCell>
+                  <TableCell align="center">{item.valueDate}</TableCell>
+                  <TableCell align="center">{item.amount}</TableCell>
+                  <TableCell align="center">{item.currency}</TableCell>
+                  <TableCell align="center">
+                    {item.creditDebitIndicator}
+                  </TableCell>
+                  <TableCell align="center">{item.runningBalance}</TableCell>
+                </TableRow>
+              ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+      <TablePagination
+        rowsPerPageOptions={[5, 10, 20, 50, 100, 200]}
+        component="div"
+        count={rows.length}
+        rowsPerPage={rowsPerPage}
+        page={page}
+        onPageChange={handleChangePage}
+        onRowsPerPageChange={handleChangeRowsPerPage}
+      />
       <ErrorModal open={open} handleClose={handleClose} value={value} />
-    </div>
+    </Paper>
   );
 };
 

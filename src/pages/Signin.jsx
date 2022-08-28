@@ -27,6 +27,8 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   const handleOpen = async (e) => {
+    e.preventDefault();
+
     const user = await axios.post(`${env.API_URL}/users/login`, {
       data: { name: account, password: password },
     });
@@ -37,6 +39,9 @@ const SignIn = () => {
       localStorage.setItem("dibao_userId", user.data.id);
       navigate("/dashboard");
     }
+
+    console.log("aa");
+
     if (account === "") {
       setValue("Account is not entered");
     } else if (password === "") {
@@ -55,7 +60,7 @@ const SignIn = () => {
   return (
     <div className="signin">
       <Container maxWidth="xs" sx={{ paddingTop: "23vh" }}>
-        <Box className="pay-title">DiBao Pay Control</Box>
+        <Box className="pay-title">RR Pay Control</Box>
         <Box
           sx={{
             bgcolor: "white",
@@ -72,7 +77,8 @@ const SignIn = () => {
           >
             Please login first
           </Typography>
-          <form onSubmit={handleOpen}>
+
+          <form onSubmit={(e) => handleOpen(e)}>
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <PersonIcon
                 sx={{ color: "action.active", mr: 1, my: 0.5, ml: 3 }}

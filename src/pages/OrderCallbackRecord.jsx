@@ -3,11 +3,11 @@ import { Grid, Card, CardContent } from "@mui/material";
 import RecordCard from "../components/RecordCard";
 import RecordTable from "../components/RecordTable";
 
-const InterfaceRecord = () => {
+const OrderCallbackRecord = () => {
   return (
     <Grid container padding={2} marginTop={4}>
       <Grid item sm={12}>
-        <RecordCard flag="interface"/>
+        <RecordCard/>
       </Grid>
       <Grid container marginTop={4}>
           <Grid item xs={12}>
@@ -22,4 +22,4 @@ const InterfaceRecord = () => {
   );
 };
 
-export default InterfaceRecord;
+export default OrderCallbackRecord;

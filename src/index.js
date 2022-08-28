@@ -16,6 +16,7 @@ import NotificationData from "./pages/NotificationData";
 import ChannelInformation from "./pages/ChannelInformation";
 import LoginRecord from "./pages/LoginRecord";
 import InterfaceRecord from "./pages/InterfaceRecord";
+import OrderCallbackRecord from "./pages/OrderCallbackRecord";
 import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
@@ -41,6 +42,7 @@ root.render(
           <Route path="/channel_info" element={<ChannelInformation />} />
           <Route path="/login_record" element={<LoginRecord />} />
           <Route path="/interface_record" element={<InterfaceRecord />} />
+          <Route path="/order_record" element={<OrderCallbackRecord />} />
         </Route>
       </Routes>
     </BrowserRouter>
