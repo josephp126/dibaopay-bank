@@ -10,7 +10,7 @@ import {
   TablePagination,
   Paper,
 } from "@mui/material";
-import CloseIcon from "@mui/icons-material/Close";
+import DoneIcon from "@mui/icons-material/Done";
 import axios from "axios";
 import env from "react-dotenv";
 import ErrorModal from "./ErrorModal";
@@ -56,16 +56,12 @@ const AccountInfoTable = (props) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell align="center">transactionId</TableCell>
-              <TableCell align="center">arrangementId</TableCell>
-              <TableCell align="center">reference</TableCell>
-              <TableCell align="center">description</TableCell>
-              <TableCell align="center">bookingDate</TableCell>
-              <TableCell align="center">valueDate</TableCell>
-              <TableCell align="center">amount</TableCell>
-              <TableCell align="center">currency</TableCell>
-              <TableCell align="center">creditDebitIndicator</TableCell>
-              <TableCell align="center">runningBalance</TableCell>
+              <TableCell align="center">EventDate</TableCell>
+              <TableCell align="center">Code GD</TableCell>
+              <TableCell align="center">Description</TableCell>
+              <TableCell align="center">Amount</TableCell>
+              <TableCell align="center">Account</TableCell>
+              <TableCell align="center">Status</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -73,18 +69,14 @@ const AccountInfoTable = (props) => {
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((item, i) => (
                 <TableRow key={i}>
-                  <TableCell align="center">{item.transactionId}</TableCell>
-                  <TableCell align="center">{item.arrangementId}</TableCell>
-                  <TableCell align="center">{item.reference}</TableCell>
+                  <TableCell align="center">{item.when}</TableCell>
+                  <TableCell align="center">{item.id}</TableCell>
                   <TableCell align="center">{item.description}</TableCell>
-                  <TableCell align="center">{item.bookingDate}</TableCell>
-                  <TableCell align="center">{item.valueDate}</TableCell>
                   <TableCell align="center">{item.amount}</TableCell>
-                  <TableCell align="center">{item.currency}</TableCell>
+                  <TableCell align="center">{item.bankSubAccId}</TableCell>
                   <TableCell align="center">
-                    {item.creditDebitIndicator}
+                    <DoneIcon />
                   </TableCell>
-                  <TableCell align="center">{item.runningBalance}</TableCell>
                 </TableRow>
               ))}
           </TableBody>
