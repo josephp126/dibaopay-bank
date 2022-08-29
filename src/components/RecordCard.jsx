@@ -52,7 +52,7 @@ const RecordCard = (props) => {
 
   const handleInterStatus = (e) => {
     setInterStatus(e.target.value);
-  }
+  };
   const handleStatus = (e) => {
     setStatus(e.target.value);
   };
@@ -74,8 +74,7 @@ const RecordCard = (props) => {
     setStatus("");
     setStartDate(new Date());
     setEndDate(new Date());
-    
-  }
+  };
   const handleSelectTime = (e) => {
     let date = new Date();
     const currentDate = e.currentTarget.value;
@@ -207,26 +206,42 @@ const RecordCard = (props) => {
               onChange={handleMemberID}
             />
           </Grid>
-          <Grid item lg={2} md={4} sm={6} xs={12}>
-            {props.flag == 'login' ? <FormControl fullWidth>
-              status
-              <NativeSelect id="status" value={status} onChange={handleStatus}>
-                {statusData.map((data, index) => (
-                  <option key={index} value={data.value}>
-                    {data.title}
-                  </option>
-                ))}
-              </NativeSelect>
-            </FormControl> : <TextField
-              variant="standard"
-              label="status"
-              id="interStatus"
-              value={interStatus}
-              sx={{ width: "100%" }}
-              onChange={handleInterStatus}
-            />}
-            
-          </Grid>
+
+          {props.flag == "login" ? (
+            <Grid item lg={2} md={4} sm={6} xs={12}>
+              {" "}
+              <FormControl fullWidth>
+                status
+                <NativeSelect
+                  id="status"
+                  value={status}
+                  onChange={handleStatus}
+                >
+                  {statusData.map((data, index) => (
+                    <option key={index} value={data.value}>
+                      {data.title}
+                    </option>
+                  ))}
+                </NativeSelect>
+              </FormControl>{" "}
+            </Grid>
+          ) : props.flag == "interface" ? (
+            <Grid item lg={2} md={4} sm={6} xs={12}>
+              {" "}
+              <FormControl fullWidth></FormControl>{" "}
+              <TextField
+                variant="standard"
+                label="status"
+                id="interStatus"
+                value={interStatus}
+                sx={{ width: "100%" }}
+                onChange={handleInterStatus}
+              />{" "}
+            </Grid>
+          ) : (
+            <></>
+          )}
+
           <Grid item lg={2} md={4} sm={6} xs={12}>
             <FormControl fullWidth>
               selection time

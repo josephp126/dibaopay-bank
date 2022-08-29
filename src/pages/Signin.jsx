@@ -28,6 +28,7 @@ const SignIn = () => {
 
   const handleOpen = async (e) => {
     e.preventDefault();
+
     const user = await axios.post(`${env.API_URL}/users/login`, {
       data: { name: account, password: password },
     });
@@ -38,6 +39,7 @@ const SignIn = () => {
       localStorage.setItem("dibao_userId", user.data.id);
       navigate("/dashboard");
     }
+
     console.log("aa");
 
     if (account === "") {
@@ -75,6 +77,7 @@ const SignIn = () => {
           >
             Please login first
           </Typography>
+
           <form onSubmit={(e) => handleOpen(e)}>
             <Box sx={{ display: "flex", alignItems: "flex-end" }}>
               <PersonIcon
@@ -118,8 +121,10 @@ const SignIn = () => {
             </Box>
             <Button
               variant="text"
-              type="submit"
               sx={{ marginTop: "38px", paddingX: "80px" }}
+              type="submit"
+              // onClick={handleOpen}
+              // onKeyDown={e => e.key === 'Enter' && handleOpen}
             >
               Login
             </Button>
