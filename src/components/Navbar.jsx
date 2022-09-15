@@ -219,9 +219,17 @@ const Navbar = () => {
         $("#subMenu_6").css({ display: "block" });
         break;
       }
-      case "/notification_data": {
-        setTitle("Notification Data");
-        $(`#sidebar_sublist_notification_data`).css({
+      case "/tpbank": {
+        setTitle("Tp bank");
+        $(`#sidebar_sublist_tpbank`).css({
+          "background-color": "#e91e63",
+        });
+        $("#subMenu_7").css({ display: "block" });
+        break;
+      }
+      case "/bidvbank": {
+        setTitle("BIDV Bank");
+        $(`#sidebar_sublist_bidvbank`).css({
           "background-color": "#e91e63",
         });
         $("#subMenu_7").css({ display: "block" });

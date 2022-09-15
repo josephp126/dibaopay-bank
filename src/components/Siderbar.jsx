@@ -118,8 +118,8 @@ export default function ResponsiveDrawer(props) {
         $("#subMenu_6").css({ display: "block" });
         break;
       }
-      case "/notification_data": {
-        $(`#sidebar_sublist_notification_data`).css({
+      case "/tpbank": {
+        $(`#sidebar_sublist_tpbank`).css({
           "background-color": "#e91e63",
         });
         $("#subMenu_7").css({ display: "block" });
@@ -248,7 +248,11 @@ export default function ResponsiveDrawer(props) {
         setSubNo(6);
         break;
       }
-      case "notification_data": {
+      case "/tpbank": {
+        setSubNo(7);
+        break;
+      }
+      case "/bidvbank": {
         setSubNo(7);
         break;
       }

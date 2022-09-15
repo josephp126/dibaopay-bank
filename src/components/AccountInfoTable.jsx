@@ -212,7 +212,7 @@ const AccountInfoTable = (props) => {
 
   useEffect(() => {
     fetchAccountInfos();
-  });
+  }, []);
 
   const handleModalOpen = () => setOpen(true);
 

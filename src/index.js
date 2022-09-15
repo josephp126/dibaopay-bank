@@ -12,7 +12,8 @@ import PaymentReport from "./pages/PaymentReport";
 import ManuallyReport from "./pages/ManuallyReport";
 import QuotaModifierReport from "./pages/QuotaModifierReport";
 import SummaryChart from "./pages/SummaryChart";
-import NotificationData from "./pages/NotificationData";
+import Tpbank from "./pages/Tpbank";
+import Bidvbank from "./pages/BIDVbank";
 import ChannelInformation from "./pages/ChannelInformation";
 import LoginRecord from "./pages/LoginRecord";
 import InterfaceRecord from "./pages/InterfaceRecord";
@@ -38,7 +39,8 @@ root.render(
           <Route path="/manually_report" element={<ManuallyReport />} />
           <Route path="/quota_report" element={<QuotaModifierReport />} />
           <Route path="/summary_chart" element={<SummaryChart />} />
-          <Route path="/notification_data" element={<NotificationData />} />
+          <Route path="/tpbank" element={<Tpbank />} />
+          <Route path="/bidvbank" element={<Bidvbank />} />
           <Route path="/channel_info" element={<ChannelInformation />} />
           <Route path="/login_record" element={<LoginRecord />} />
           <Route path="/interface_record" element={<InterfaceRecord />} />

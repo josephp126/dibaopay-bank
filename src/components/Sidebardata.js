@@ -132,9 +132,15 @@ export default [
     id: "notification",
     sublist: [
       {
-        text: "Notification Data",
-        router: "/notification_data",
-        id: "notification_data",
+        text: "Tp Bank",
+        router: "/tpbank",
+        id: "tpbank",
+        no: 7,
+      },
+      {
+        text: "BIDV Bank",
+        router: "/bidvbank",
+        id: "bidvbank",
         no: 7,
       },
     ],
